@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="photos.UserController"
+            prefHeight="400.0" prefWidth="600.0">
+    <HBox fx:id="hbox3" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="100" AnchorPane.leftAnchor="10" spacing = '10' layoutX="200" >
+        <children>
+            <ListView fx:id="photoView" />
+
+        </children>
+    </HBox>
+
+
+    <HBox  layoutY="300"  fx:id="hbox" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="50"  spacing="10" >
+        <children>
+            <Button fx:id="addAPicture"  text="Add a Picture" onAction="#uploadPicture" />
+        </children>
+    </HBox>
+
+
+
+
+</AnchorPane>
