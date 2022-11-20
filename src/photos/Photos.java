@@ -20,20 +20,23 @@ public class Photos extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        UserController.setStage(stage);
+
         User stock = new User("stock");
 
         Photo first = new Photo("stockphotos/cherry-blossoms-korea-beautiful-34712339.jpeg");
 
         Album stockAlbum = stock.createAlbum("stock");
         stockAlbum.addPhoto(first);
-        UserController.display(stock);
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("User.fxml"));
-//        AnchorPane root = (AnchorPane)loader.load();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
+        UserController.setCurrent(stock);
+        UserController.setStage(stage);
+        AlbumController.setCurrent(stock);
+        AlbumController.setStage(stage);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("User.fxml"));
+        AnchorPane root = (AnchorPane)loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 

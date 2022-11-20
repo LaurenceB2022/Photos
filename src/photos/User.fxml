@@ -17,20 +17,20 @@
         <Button text="Search"/>
 
     </HBox>
-            <TextField fx:id="enterAlbum" promptText="Enter Album"/>
+            <TextField fx:id="enterAlbum" promptText="Enter Album" onKeyTyped="#albumNameChanged"/>
 
         <HBox spacing="10">
-            <Button fx:id="createAlbum" text="Create Album"/>
-            <Button fx:id="deleteAlbum" text="Delete Album"/>
+            <Button fx:id="createAlbum" disable="true" text="Create Album" onAction="#createAlbum"/>
+            <Button fx:id="deleteAlbum" disable="true" text="Delete Album" onAction="#deleteAlbum"/>
         </HBox>
 
         <HBox spacing="10">
-            <Button fx:id="renameAlbum" text="Rename Album"/>
-            <Button fx:id="openAlbum" text="Open Album"/>
+            <Button fx:id="renameAlbum" disable="true" text="Rename Album" onAction="#renameAlbum"/>
+            <Button fx:id="openAlbum" disable="true" text="Open Album" onAction="#openAlbum"/>
         </HBox>
 
     </VBox>
-        <ListView/>
+        <ListView fx:id="albums" onMouseClicked="#albumButtons"/>
 
     </HBox>
 
