@@ -37,6 +37,7 @@ public class Photos extends Application {
         stockAlbum.addPhoto(third);
         stockAlbum.addPhoto(fourth);
         stockAlbum.addPhoto(fifth);
+
         UserController.setCurrent(stock);
         UserController.setStage(stage);
         AlbumController.setCurrent(stock);

@@ -18,6 +18,10 @@ public class Album {
         name=a;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public String toString(){
         return this.name+"\n"+this.getPhotos().size()+" photos";
     }
