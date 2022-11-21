@@ -10,18 +10,28 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="photos.UserController"
             prefHeight="400.0" prefWidth="600.0">
-    <HBox fx:id="hbox3" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="100" AnchorPane.leftAnchor="10" spacing = '10' layoutX="200" >
-        <children>
-            <ListView fx:id="photoView" />
+    <HBox AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="25" >
+        <VBox  spacing="10" >
+    <HBox spacing="10">
+        <TextField promptText="Enter Photo Description"/>
+        <Button text="Search"/>
 
-        </children>
     </HBox>
+            <TextField fx:id="enterAlbum" promptText="Enter Album" onKeyTyped="#albumNameChanged"/>
 
+        <HBox spacing="10">
+            <Button fx:id="createAlbum" disable="true" text="Create Album" onAction="#createAlbum"/>
+            <Button fx:id="deleteAlbum" disable="true" text="Delete Album" onAction="#deleteAlbum"/>
+        </HBox>
 
-    <HBox  layoutY="300"  fx:id="hbox" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="50"  spacing="10" >
-        <children>
-            <Button fx:id="addAPicture"  text="Add a Picture" onAction="#uploadPicture" />
-        </children>
+        <HBox spacing="10">
+            <Button fx:id="renameAlbum" disable="true" text="Rename Album" onAction="#renameAlbum"/>
+            <Button fx:id="openAlbum" disable="true" text="Open Album" onAction="#openAlbum"/>
+        </HBox>
+
+    </VBox>
+        <ListView fx:id="albums" onMouseClicked="#albumButtons"/>
+
     </HBox>
 
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="photos.AlbumController"
+            prefHeight="400.0" prefWidth="600.0">
+   <HBox AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="10">
+
+      <VBox AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="10">
+         <TextField/>
+         <HBox spacing="10">
+            <Button fx:id="copyPhoto" text="Copy Photo" disable="true"/>
+            <Button fx:id="movePhoto" text="Move Photo" disable="true"/>
+         </HBox>
+         <HBox spacing="10">
+            <Button fx:id="removeTag" text="Remove Tag" disable="true"/>
+            <Button fx:id="addTag" text="Add Tag" disable="true"/>
+         </HBox>
+         <HBox spacing="10">
+            <Button fx:id="addPhoto" text="Add Photo" onAction="#addPhoto"/>
+            <Button fx:id="removePhoto" text="Remove Photo" disable="true" onAction="#removePhoto"/>
+         </HBox>
+         <HBox spacing="10">
+            <Button fx:id="captionPhoto" text="Caption Photo" disable="true"/>
+            <Button fx:id="viewSlides" text="View Slideshow" />
+         </HBox>
+
+
+      </VBox>
+
+      <TilePane fx:id="display" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="150" AnchorPane.bottomAnchor="10" prefWidth="175"></TilePane>
+
+      <TilePane fx:id="tilePane" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="200" AnchorPane.bottomAnchor="10" hgap="4" vgap="8"/>
+
+
+   </HBox>
+
+
+</AnchorPane>
