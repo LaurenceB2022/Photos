@@ -35,8 +35,7 @@ public class UserController {
     @FXML
     private Button deleteAlbum;
 
-    @FXML
-    private TilePane tilePane;
+
 
     @FXML
     private ListView<Album> albums;
@@ -112,6 +111,7 @@ public class UserController {
     }
 
     public void openAlbum(ActionEvent actionEvent) throws IOException {
+
         AlbumController.setCurrentAlbum(albums.getSelectionModel().getSelectedItem());
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("Album.fxml"));
@@ -122,23 +122,6 @@ public class UserController {
     }
 
 
-//    public void uploadPicture(ActionEvent actionEvent) { Will be used elsewhere
-//
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("images", "*.jpg", "*.png", "*.jpeg","*.bmp","*.gif")
-//        );
-//        File file = fileChooser.showOpenDialog(stage);
-//
-//        if(file!=null){
-//            System.out.println(file.getAbsolutePath());
-//            Image image = new Image((file.toURI().toString()));
-//
-//            ImageView imageView = new ImageView(image);
-//
-//            tilePane.getChildren().addAll(imageView);
-//        }
-//
-//    }
+
 
 }

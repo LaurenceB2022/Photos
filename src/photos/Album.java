@@ -19,6 +19,10 @@ public class Album {
     }
 
     public String toString(){
-        return this.name;
+        return this.name+"\n"+this.getPhotos().size()+" photos";
+    }
+
+    public ArrayList<Photo> getPhotos(){
+        return photos;
     }
 }
