@@ -4,12 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -19,6 +22,12 @@ import photos.users.User;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class AlbumController {
@@ -103,7 +112,8 @@ public class AlbumController {
 
                 ImageView imageView2 = new ImageView(image2);
                 Label caption = new Label(photo.getCaption());
-                Label date = new Label(""+new Date(1000*new File(photo.getPath()).lastModified()));
+
+                    Label date = new Label("" );
                 display.getChildren().clear();
                 display.getChildren().add(imageView2);
                 display.getChildren().add(caption);
@@ -326,5 +336,16 @@ public class AlbumController {
         }
 
 
+    }
+
+    public void viewSlideshow(ActionEvent actionEvent) throws IOException {
+        SlideshowController.setCurrentAlbum(currentAlbum);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Slideshow.fxml"));
+
+        AnchorPane root = (AnchorPane)loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

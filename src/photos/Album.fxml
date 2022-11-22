@@ -33,7 +33,7 @@
          </HBox>
          <HBox spacing="10">
             <Button fx:id="captionPhoto" text="Caption Photo" disable="true" onAction="#enableCaption"/>
-            <Button fx:id="viewSlides" text="View Slideshow" />
+            <Button fx:id="viewSlides" text="View Slideshow" onAction="#viewSlideshow" />
          </HBox>
 
 

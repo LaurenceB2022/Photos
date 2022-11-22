@@ -42,6 +42,8 @@ public class Photos extends Application {
         UserController.setStage(stage);
         AlbumController.setCurrent(stock);
         AlbumController.setStage(stage);
+        SlideshowController.setStage(stage);
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("User.fxml"));
         AnchorPane root = (AnchorPane)loader.load();
