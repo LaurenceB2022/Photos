@@ -11,9 +11,13 @@ public class User {
     private String username;
     private ArrayList<Album> albums;
 
+    public ArrayList<String> tagTypes;
+
     public User(String username){
         this.username = username;
         albums = new ArrayList<Album>();
+        tagTypes = new ArrayList<String>();
+        tagTypes.add("location");
     }
 
     public String getUsername(){
@@ -21,6 +25,11 @@ public class User {
     }
 
     public Album createAlbum(String name){
+        for(Album a:albums){
+            if (a.getName().equals(name)){
+                return a;
+            }
+        }
         albums.add(new Album(name));
         return albums.get(0);
     }
@@ -33,5 +42,6 @@ public class User {
     public ArrayList<Album> getAlbums(){
         return albums;
     }
-    
+
+
 }

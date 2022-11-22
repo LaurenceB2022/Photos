@@ -37,7 +37,7 @@
             <Button fx:id="captionPhoto" text="Caption Photo" disable="true" onAction="#enableCaption"/>
             <Button fx:id="viewSlides" text="View Slideshow" onAction="#viewSlideshow" />
          </HBox>
-
+         <ComboBox fx:id="tagType"  promptText="Tag Type" disable="true" editable="true"/>
 
       </VBox>
 

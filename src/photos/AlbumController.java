@@ -6,10 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -53,6 +50,8 @@ public class AlbumController {
     @FXML
     public TextField text;
     @FXML
+    public ComboBox tagType;
+    @FXML
     private TilePane tilePane;
     @FXML
     private VBox display;
@@ -66,6 +65,7 @@ public class AlbumController {
     private boolean moveMode;
     private String currentTag;
 
+
     public static void setStage(Stage stage){
         AlbumController.stage = stage;
     }
@@ -78,6 +78,7 @@ public class AlbumController {
     }
 
     public void initialize() throws IOException {
+        tagType.setItems(FXCollections.observableList((current.tagTypes)));
         currentPhoto=null;
         display();
 
@@ -108,35 +109,7 @@ public class AlbumController {
 
             imageView.setOnMouseClicked(e ->{
                 currentPhoto = photo;
-                Image image2 = new Image(photo.getPath(),100, 100, false, false);
-
-                ImageView imageView2 = new ImageView(image2);
-                Label caption = new Label(photo.getCaption());
-
-                    Label date = new Label(photo.lastModified.toString());
-                display.getChildren().clear();
-                display.getChildren().add(imageView2);
-                display.getChildren().add(caption);
-                display.getChildren().add(date);
-                for(String tag: currentPhoto.getTags()){
-                    Label tagLabel = new Label(tag);
-                    tagLabel.setOnMouseClicked(f->{
-                        currentTag = tag;
-                       removeTag.setDisable(false);
-
-                    });
-                    display.getChildren().add(tagLabel);
-
-                }
-
-                copyPhoto.setDisable(false);
-                movePhoto.setDisable(false);
-                removePhoto.setDisable(false);
-                captionPhoto.setDisable(false);
-                addTag.setDisable(false);
-                removeTag.setDisable(true);
-
-
+                showCurrentPhoto();
                     });
 
             VBox imageWithCaption = new VBox(imageView);
@@ -147,6 +120,43 @@ public class AlbumController {
             tilePane.getChildren().addAll(imageWithCaption);
 
         }
+        if(currentPhoto!=null){
+            showCurrentPhoto();
+        }
+
+    }
+
+    public void showCurrentPhoto(){
+        Photo photo = currentPhoto;
+        Image image2 = new Image(photo.getPath(),100, 100, false, false);
+
+        ImageView imageView2 = new ImageView(image2);
+        Label caption = new Label(photo.getCaption());
+
+        Label date = new Label(photo.lastModified.toString());
+        display.getChildren().clear();
+        display.getChildren().add(imageView2);
+        display.getChildren().add(caption);
+        display.getChildren().add(date);
+        for(String tag: currentPhoto.getTags()){
+            Label tagLabel = new Label(tag);
+            tagLabel.setOnMouseClicked(f->{
+                currentTag = tag;
+                removeTag.setDisable(false);
+
+            });
+            display.getChildren().add(tagLabel);
+
+        }
+
+        copyPhoto.setDisable(false);
+        movePhoto.setDisable(false);
+        removePhoto.setDisable(false);
+        captionPhoto.setDisable(false);
+        addTag.setDisable(false);
+        tagType.setDisable(false);
+        removeTag.setDisable(true);
+
     }
 
     public void removePhoto(ActionEvent actionEvent) {
@@ -158,6 +168,7 @@ public class AlbumController {
         removePhoto.setDisable(true);
         captionPhoto.setDisable(true);
         addTag.setDisable(true);
+        tagType.setDisable(true);
         removeTag.setDisable(true);
         addPhoto.setDisable(false);
         display();
@@ -171,6 +182,7 @@ public class AlbumController {
             movePhoto.setDisable(false);
             removePhoto.setDisable(false);
             addTag.setDisable(false);
+            tagType.setDisable(false);
             removeTag.setDisable(true);
             addPhoto.setDisable(false);
 
@@ -183,10 +195,11 @@ public class AlbumController {
             movePhoto.setDisable(true);
             removePhoto.setDisable(true);
             addTag.setDisable(true);
+            tagType.setDisable(true);
             removeTag.setDisable(true);
             addPhoto.setDisable(true);
         }
-
+        display();
     }
 
     public void addText(ActionEvent actionEvent) {
@@ -198,11 +211,23 @@ public class AlbumController {
             movePhoto.setDisable(false);
             removePhoto.setDisable(false);
             addTag.setDisable(false);
+            tagType.setDisable(false);
             removeTag.setDisable(true);
             addPhoto.setDisable(true);
         }
         if(tagMode){
-            currentPhoto.addTag(text.getText().trim());
+            if(tagType.getSelectionModel().getSelectedItem()==null){
+                return;
+            }
+            String type = ((String) tagType.getSelectionModel().getSelectedItem()).trim();
+            if(type.equals("")||(text.getText().trim().equals(""))){
+                return;
+            }
+            if(current.tagTypes.contains(type)==false){
+                current.tagTypes.add(type);
+                tagType.setItems(FXCollections.observableList((current.tagTypes)));
+            }
+            currentPhoto.addTag(tagType.getSelectionModel().getSelectedItem()+"="+text.getText().trim());
             tagMode = false;
             textAdder.setVisible(false);
             copyPhoto.setDisable(false);
@@ -239,6 +264,7 @@ public class AlbumController {
             removeTag.setDisable(true);
             addPhoto.setDisable(true);
         }
+        display();
     }
 
     public void removeTag(ActionEvent actionEvent) {
@@ -252,6 +278,7 @@ public class AlbumController {
         addPhoto.setDisable(false);
         removeTag.setDisable(true);
         currentTag = null;
+        display();
     }
 
     public void copyPhoto(ActionEvent actionEvent) {
@@ -291,7 +318,7 @@ public class AlbumController {
             addPhoto.setDisable(true);
             captionPhoto.setDisable(true);
         }
-
+        display();
 
     }
 
@@ -334,7 +361,7 @@ public class AlbumController {
             addPhoto.setDisable(true);
             captionPhoto.setDisable(true);
         }
-
+        display();
 
     }
 
