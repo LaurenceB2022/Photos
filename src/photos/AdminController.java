@@ -21,7 +21,7 @@ import java.util.*;
 public class AdminController implements Serializable {
     public static final String storeFile = "users.dat";
     public static final String storeDir = "docs";
-    public Admin admin;
+    private static Admin admin;
     @FXML
     private ListView<User> userView;
 
@@ -42,9 +42,14 @@ public class AdminController implements Serializable {
         AdminController.stage = stage;
     }
 
-    public static void initialize() throws IOException{
-        AdminController current = AdminController.readAdmin();
+    public static void initialize() throws IOException, ClassNotFoundException {
+
         admin = readAdmin();
+        writeAdmin(admin);
+
+
+        //AdminController current = AdminController.readAdmin();
+
 
 
         //Checks if the button is pressed
@@ -56,23 +61,22 @@ public class AdminController implements Serializable {
         ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(storeDir + File.separator + storeFile));
 
-        for(int index = 0; index < curr.getRegistered_users().size(); index++){
-            oos.writeObject(curr.getRegistered_users().get(index));
-        }
+
+        oos.writeObject(curr);
+
         oos.close();
 
     }
 
 
     public static Admin readAdmin() throws ClassNotFoundException, IOException{
-        Admin start = new Admin();
+
         ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(storeDir + File.separator + storeFile));
 
         try{
             while(true){
-                User current = (User)ois.readObject();
-                start.addUser(current);
+                admin = (Admin)ois.readObject();
             }
         } catch (EOFException e) {
         //System.out.println("End of File.");
@@ -81,10 +85,10 @@ public class AdminController implements Serializable {
     }
 
         ois.close();
-        return start;
+        return admin;
     }
 
-    public void addUser(ActionEvent e){
+    public void addUser(ActionEvent e) throws IOException {
         String username = User_Entry.getText().trim();
         if(username.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -109,6 +113,7 @@ public class AdminController implements Serializable {
                 }
             }
             obsList.add(user);
+            admin.addUser(user);
             writeAdmin(admin);
             userView.setItems(FXCollections.observableList(obsList));
             userView.getSelectionModel().select(user);
@@ -121,7 +126,7 @@ public class AdminController implements Serializable {
         userView.setItems(FXCollections.observableList(obsList));
     }
 
-    public void deleteUser(ActionEvent e){
+    public void deleteUser(ActionEvent e) throws IOException {
         //Checks if any users exists
         if(obsList.size() == 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
