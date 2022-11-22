@@ -12,6 +12,7 @@ public class User {
     private ArrayList<Album> albums;
 
     public ArrayList<String> tagTypes;
+    public ArrayList<Photo> userPhotos;
 
     public User(String username){
         this.username = username;

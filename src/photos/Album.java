@@ -17,6 +17,9 @@ public class Album {
     }
 
     public void addPhoto(Photo a){
+        if(photos.contains(a)){
+            return;
+        }
         if(earliest == null && latest ==null){
             this.earliest = a.lastModified;
             this.latest = a.lastModified;

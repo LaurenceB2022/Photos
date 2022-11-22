@@ -92,7 +92,16 @@ public class AlbumController {
         File file = fileChooser.showOpenDialog(stage);
 
         if(file!=null){
-            Photo photo = new Photo((file.toURI().toString()));
+            Photo photo=null;
+            for(Photo userPhoto: current.userPhotos){
+                if(userPhoto.getPath().equals(file.toURI().toString())){
+                    photo = userPhoto;
+                }
+            }
+            if(photo==null){
+                photo = new Photo((file.toURI().toString()));
+            }
+
 
             currentAlbum.addPhoto(photo);
         }
@@ -295,9 +304,12 @@ public class AlbumController {
             display.getChildren().clear();
 
             listView.setItems(FXCollections.observableList((current.getAlbums())));
-            listView.getItems().remove(currentAlbum);
+
 
             listView.setOnMouseClicked(e->{
+                if(listView.getSelectionModel().getSelectedItem()==currentAlbum){
+                    return;
+                }
                 Album copyTo = listView.getSelectionModel().getSelectedItem();
                 copyTo.addPhoto(currentPhoto);
                 copyPhoto.setDisable(true);
@@ -318,7 +330,7 @@ public class AlbumController {
             addPhoto.setDisable(true);
             captionPhoto.setDisable(true);
         }
-        display();
+
 
     }
 
@@ -336,15 +348,20 @@ public class AlbumController {
             display.getChildren().clear();
 
             listView.setItems(FXCollections.observableList((current.getAlbums())));
-            listView.getItems().remove(currentAlbum);
+
 
             listView.setOnMouseClicked(e->{
+                if(listView.getSelectionModel().getSelectedItem()==currentAlbum){
+                    return;
+                }
+
                 Album copyTo = listView.getSelectionModel().getSelectedItem();
                 copyTo.addPhoto(currentPhoto);
                 currentAlbum.removePhoto(currentPhoto);
                 movePhoto.setDisable(true);
                 moveMode = false;
                 display.getChildren().clear();
+                currentPhoto = null;
                 display();
             });
 
@@ -361,7 +378,7 @@ public class AlbumController {
             addPhoto.setDisable(true);
             captionPhoto.setDisable(true);
         }
-        display();
+
 
     }
 
