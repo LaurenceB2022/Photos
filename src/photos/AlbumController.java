@@ -113,7 +113,7 @@ public class AlbumController {
                 ImageView imageView2 = new ImageView(image2);
                 Label caption = new Label(photo.getCaption());
 
-                    Label date = new Label("" );
+                    Label date = new Label(photo.lastModified.toString());
                 display.getChildren().clear();
                 display.getChildren().add(imageView2);
                 display.getChildren().add(caption);
@@ -151,7 +151,7 @@ public class AlbumController {
 
     public void removePhoto(ActionEvent actionEvent) {
         display.getChildren().clear();
-        currentAlbum.getPhotos().remove(currentPhoto);
+        currentAlbum.removePhoto(currentPhoto);
         currentPhoto = null;
         copyPhoto.setDisable(true);
         movePhoto.setDisable(true);
@@ -314,7 +314,7 @@ public class AlbumController {
             listView.setOnMouseClicked(e->{
                 Album copyTo = listView.getSelectionModel().getSelectedItem();
                 copyTo.addPhoto(currentPhoto);
-                currentAlbum.getPhotos().remove(currentPhoto);
+                currentAlbum.removePhoto(currentPhoto);
                 movePhoto.setDisable(true);
                 moveMode = false;
                 display.getChildren().clear();
@@ -342,6 +342,16 @@ public class AlbumController {
         SlideshowController.setCurrentAlbum(currentAlbum);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("Slideshow.fxml"));
+
+        AnchorPane root = (AnchorPane)loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goBack(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("User.fxml"));
 
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);

@@ -10,6 +10,8 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="photos.AlbumController"
             prefHeight="400.0" prefWidth="800.0">
+
+
    <HBox AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="10">
 
       <VBox AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="10">
@@ -45,6 +47,7 @@
 
 
    </HBox>
+   <Button fx:id="goBack" onAction="#goBack" text="Go Back" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10"/>
 
 
 </AnchorPane>

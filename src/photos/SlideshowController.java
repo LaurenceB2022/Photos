@@ -32,7 +32,7 @@ public class SlideshowController {
         if(currentAlbum.getPhotos().size()==0){
             return;
         }
-        picture.setImage(new Image(currentAlbum.getPhotos().get(0).path,200,200,false,false));
+        picture.setImage(new Image(currentAlbum.getPhotos().get(0).getPath(),200,200,false,false));
     }
     public static void setStage(Stage stage) {
         SlideshowController.stage = stage;
@@ -46,13 +46,13 @@ public class SlideshowController {
             return;
         }
         index--;
-        picture.setImage(new Image(currentAlbum.getPhotos().get(index).path,200,200,false,false));
+        picture.setImage(new Image(currentAlbum.getPhotos().get(index).getPath(),200,200,false,false));
     }
     public void nextPicture(ActionEvent actionEvent) {
         if(index==currentAlbum.getPhotos().size()-1){
             return;
         }
         index++;
-        picture.setImage(new Image(currentAlbum.getPhotos().get(index).path,200,200,false,false));
+        picture.setImage(new Image(currentAlbum.getPhotos().get(index).getPath(),200,200,false,false));
     }
 }

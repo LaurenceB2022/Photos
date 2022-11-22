@@ -13,8 +13,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import photos.users.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Photos extends Application {
 
@@ -22,7 +24,6 @@ public class Photos extends Application {
     public void start(Stage stage) throws IOException {
 
         User stock = new User("stock");
-
 
 
         Photo first = new Photo("file:"+System.getProperty("user.dir")+"/"+"stockphotos/cherry-blossoms-korea-beautiful-34712339.jpeg");

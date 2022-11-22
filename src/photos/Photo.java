@@ -1,22 +1,25 @@
 package photos;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 
 public class Photo {
 
 
-    String path;
+    private String path;
     private String caption;
-    FileTime lastModified;
+    Date lastModified;
 
     private ArrayList<String> tags;
 
     public Photo(String path){
         this.path = path;
         tags = new ArrayList<String>();
+        lastModified = new Date(new File(path.substring(5)).lastModified());
     }
 
     public String getPath(){
