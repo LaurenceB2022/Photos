@@ -18,7 +18,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 
-public class AdminController implements Serializable {
+public class AdminController {
     public static final String storeFile = "users.dat";
     public static final String storeDir = "docs";
     private static Admin admin;
@@ -41,10 +41,10 @@ public class AdminController implements Serializable {
     public static void setStage(Stage stage){
         AdminController.stage = stage;
     }
-    public static void setAdmin(Admin current){AdminController.admin = current;}
+    public static void setAdmin(Admin current){
+        AdminController.admin = current;}
 
-    public static void initialize(Admin login) throws IOException, ClassNotFoundException {
-
+    public void initialize() throws IOException, ClassNotFoundException {
 
         writeAdmin(admin);
 
@@ -96,6 +96,7 @@ public class AdminController implements Serializable {
     }
 
     public void showUsers(ActionEvent e){
+        obsList = admin.getRegistered_users();
         userView.setItems(FXCollections.observableList(obsList));
     }
 

@@ -3,10 +3,11 @@ package photos.users;
 import photos.Album;
 import photos.Photo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class User {
+public class User implements Serializable {
 
     private String username;
     private ArrayList<Album> albums;
@@ -19,6 +20,7 @@ public class User {
         albums = new ArrayList<Album>();
         tagTypes = new ArrayList<String>();
         tagTypes.add("location");
+        userPhotos = new ArrayList<Photo>();
     }
 
     public String getUsername(){
@@ -44,5 +46,7 @@ public class User {
         return albums;
     }
 
-
+    public String toString(){
+        return this.username;
+    }
 }

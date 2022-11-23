@@ -13,7 +13,7 @@
 
             <HBox AnchorPane.rightAnchor="50" AnchorPane.bottomAnchor="100" spacing="20">
                 <children >
-                    <TextField fx:id="text_entry" text="Enter Username" onAction="#enableLogin" editable="true" maxWidth="100" disable="false"/>
+                    <TextField fx:id="text_entry" promptText="Enter Username" onAction="#enableLogin" editable="true" maxWidth="100" disable="false"/>
                     <Button fx:id="enter" text="Login" disable="true" onAction="#login"/>
                 </children>
             </HBox>

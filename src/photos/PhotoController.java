@@ -17,6 +17,7 @@ import java.util.*;
 public class PhotoController {
 
     public static boolean login(String username){
+        return true;
     }
 
 

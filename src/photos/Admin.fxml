@@ -21,10 +21,9 @@
                 </children>
             </HBox>
 
-            <HBox fx:id="HBoxUsers" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="400" layoutY = "50" >
+            <HBox fx:id="HBoxUsers" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="40" layoutY = "50" >
                 <ListView fx:id="userView"/>
             </HBox>
-
 
 
 

@@ -22,7 +22,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 
-public class LoginController implements Serializable{
+public class LoginController{
     private static Stage stage;
     private static Admin admin;
     public static final String storeFile = "users.dat";
@@ -39,29 +39,36 @@ public class LoginController implements Serializable{
         LoginController.stage = stage;
     }
 
-    public static void initialize() throws IOException, ClassNotFoundException {
+    public void initialize() throws IOException, ClassNotFoundException {
 
-        admin = readAdmin();
 
+        readAdmin();
+        if(admin==null){
+            admin = new Admin();
+        }
+
+        AdminController.setAdmin(admin);
     }
 
-    public static Admin readAdmin() throws ClassNotFoundException, IOException{
+    public static void readAdmin() throws IOException {
 
-        ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream(storeDir + File.separator + storeFile));
+
 
         try{
-            while(true){
+            ObjectInputStream ois = new ObjectInputStream(
+                    new FileInputStream(storeDir + File.separator + storeFile));
                 admin = (Admin)ois.readObject();
-            }
+            ois.close();
+
         } catch (EOFException e) {
             //End of file
         } catch (Exception e) {
 
         }
 
-        ois.close();
-        return admin;
+
+
+
     }
 
     public void enableLogin(ActionEvent e){
@@ -73,27 +80,32 @@ public class LoginController implements Serializable{
         String entered_input = text_entry.getText();
 
         if(entered_input.equals("admin")){
-            AdminController.setAdmin(admin);
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Admin.fxml"));
             AnchorPane root = (AnchorPane)loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            return;
         }
 
-        for(int i = 0; i < admin.getRegistered_users().size(); i++){
-            //Checks if the username matches a registered user
-            if(admin.getRegistered_users().get(i).toString().compareTo(entered_input) == 0){
-                UserController.setCurrent(admin.getRegistered_users().get(i));
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("User.fxml"));
-                AnchorPane root = (AnchorPane)loader.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+            for(int i = 0; i < admin.getRegistered_users().size(); i++){
+                //Checks if the username matches a registered user
+                if(admin.getRegistered_users().get(i).toString().compareTo(entered_input) == 0){
+                    UserController.setCurrent(admin.getRegistered_users().get(i));
+                    AlbumController.setCurrent(admin.getRegistered_users().get(i));
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("User.fxml"));
+                    AnchorPane root = (AnchorPane)loader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    return;
+                }
             }
-        }
+
+
 
         //No valid users or admin was found,
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -101,7 +113,7 @@ public class LoginController implements Serializable{
         alert.show();
 
         enter.setDisable(true);
-        return;
+
 
 
     }

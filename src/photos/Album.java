@@ -1,9 +1,10 @@
 package photos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Album {
+public class Album implements Serializable {
     private ArrayList<Photo> photos;
     private String name;
     private Date earliest;

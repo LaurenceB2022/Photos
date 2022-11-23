@@ -23,27 +23,17 @@ public class Photos extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        User stock = new User("stock");
-        Photo first = new Photo("file:"+System.getProperty("user.dir")+"/"+"stockphotos/cherry-blossoms-korea-beautiful-34712339.jpeg");
-        Photo second = new Photo("file:"+System.getProperty("user.dir")+"/"+"stockphotos/feet-bathroom-scale-isolated-792851.jpeg");
-        Photo third = new Photo("file:"+System.getProperty("user.dir")+"/"+"stockphotos/horse-racing-hong-kong-34749739.jpeg");
-        Photo fourth = new Photo("file:"+System.getProperty("user.dir")+"/"+"stockphotos/low-gi-foods-healthy-weight-loss-slimming-diet-29310784.jpeg");
-        Photo fifth = new Photo("file:"+System.getProperty("user.dir")+"/"+"stockphotos/supermarket-refrigerated-shelves-december-located-parknshop-tseung-kwan-o-hong-kong-35867257.jpeg");
-        Album stockAlbum = stock.createAlbum("stock");
-        stockAlbum.addPhoto(first);
-        stockAlbum.addPhoto(second);
-        stockAlbum.addPhoto(third);
-        stockAlbum.addPhoto(fourth);
-        stockAlbum.addPhoto(fifth);
 
-        UserController.setCurrent(stock);
+
+
         UserController.setStage(stage);
-        AlbumController.setCurrent(stock);
+
         AlbumController.setStage(stage);
         SlideshowController.setStage(stage);
 
+        LoginController.setStage(stage);
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("User.fxml"));
+        loader.setLocation(getClass().getResource("Login.fxml"));
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
