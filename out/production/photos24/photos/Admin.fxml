@@ -9,7 +9,11 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+<<<<<<< HEAD
             fx:controller="photos.AdminController"
+=======
+            fx:controller="photos.PhotoController"
+>>>>>>> origin/master
             prefHeight="400.0" prefWidth="600.0">
             <HBox fx:id="HboxAdmin" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="50" spacing="20" layoutX="100" >
                 <children>
