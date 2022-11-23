@@ -41,19 +41,12 @@ public class AdminController implements Serializable {
     public static void setStage(Stage stage){
         AdminController.stage = stage;
     }
+    public static void setAdmin(Admin current){AdminController.admin = current;}
 
-    public static void initialize() throws IOException, ClassNotFoundException {
+    public static void initialize(Admin login) throws IOException, ClassNotFoundException {
 
-        admin = readAdmin();
+
         writeAdmin(admin);
-
-
-        //AdminController current = AdminController.readAdmin();
-
-
-
-        //Checks if the button is pressed
-
 
     }
 
@@ -66,26 +59,6 @@ public class AdminController implements Serializable {
 
         oos.close();
 
-    }
-
-
-    public static Admin readAdmin() throws ClassNotFoundException, IOException{
-
-        ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream(storeDir + File.separator + storeFile));
-
-        try{
-            while(true){
-                admin = (Admin)ois.readObject();
-            }
-        } catch (EOFException e) {
-        //System.out.println("End of File.");
-        } catch (Exception e) {
-        //System.out.println("Here be error..."+e.getMessage());
-    }
-
-        ois.close();
-        return admin;
     }
 
     public void addUser(ActionEvent e) throws IOException {

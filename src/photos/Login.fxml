@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="photos.LoginController"
+            prefHeight="400.0" prefWidth="600.0">
+
+            <HBox AnchorPane.rightAnchor="50" AnchorPane.bottomAnchor="100" spacing="20">
+                <children >
+                    <TextField fx:id="text_entry" text="Enter Username" onAction="#enableLogin" editable="true" maxWidth="100" disable="false"/>
+                    <Button fx:id="enter" text="Login" disable="true" onAction="#login"/>
+                </children>
+            </HBox>
+
+
+</AnchorPane>
