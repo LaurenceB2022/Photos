@@ -6,14 +6,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.text.Text?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="photos.LoginController"
             prefHeight="400.0" prefWidth="600.0">
 
-            <HBox AnchorPane.rightAnchor="50" AnchorPane.bottomAnchor="100" spacing="20">
-                <children >
-                    <TextField fx:id="text_entry" promptText="Enter Username" onAction="#enableLogin" editable="true" maxWidth="100" disable="false"/>
+            <Text fx:id="text" text="User Login" scaleX="2" scaleY="2" AnchorPane.leftAnchor="100" AnchorPane.topAnchor="150"/>
+            <HBox AnchorPane.topAnchor="150" AnchorPane.leftAnchor="200" spacing="10">
+                <children>
+                    <TextField fx:id="text_entry" promptText="Enter Username" onAction="#enableLogin" editable="true" maxWidth="500" disable="false"/>
                     <Button fx:id="enter" text="Login" disable="true" onAction="#login"/>
                 </children>
             </HBox>

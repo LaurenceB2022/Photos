@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SlideshowController extends Logout{
+public class SlideshowController {
 
     private int index = 0;
     private static Album currentAlbum;
@@ -56,7 +56,4 @@ public class SlideshowController extends Logout{
         picture.setImage(new Image(currentAlbum.getPhotos().get(index).getPath(),200,200,false,false));
     }
 
-    public void closeAndLogout() throws IOException {
-        Logout(stage);
-    }
 }

@@ -21,7 +21,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 
-public class AdminController extends Logout {
+public class AdminController {
     private static final String storeFile = "users.dat";
     private static final String storeDir = "docs";
     private static Admin admin;
@@ -49,7 +49,6 @@ public class AdminController extends Logout {
 
     public void initialize() throws IOException, ClassNotFoundException {
 
-        Logout myLogout = new Logout();
         writeAdmin(admin);
 
     }
@@ -149,7 +148,12 @@ public class AdminController extends Logout {
     }
 
     public void closeAndLogout() throws IOException {
-        Logout(stage);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Login.fxml"));
+        AnchorPane root = (AnchorPane)loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

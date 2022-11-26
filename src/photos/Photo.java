@@ -17,10 +17,12 @@ public class Photo implements Serializable {
     Date lastModified;
 
     private ArrayList<String> tags;
+    private ArrayList<Tag> obj_tags;
 
     public Photo(String path){
         this.path = path;
         tags = new ArrayList<String>();
+        obj_tags = new ArrayList<Tag>();
         lastModified = new Date(new File(path.substring(5)).lastModified());
     }
 

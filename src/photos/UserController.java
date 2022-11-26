@@ -17,13 +17,16 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import photos.users.Admin;
 import photos.users.User;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class UserController extends Logout{
+public class UserController{
     @FXML
     private TextField enterAlbum;
     @FXML
@@ -121,9 +124,17 @@ public class UserController extends Logout{
         stage.show();
     }
 
-    public void closeAndLogout() throws IOException {
-        Logout(stage);
+    public void photoSearch(ActionEvent actionEvent) throws IOException {
+
     }
 
+    public void closeAndLogout() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Login.fxml"));
+        AnchorPane root = (AnchorPane)loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 }
