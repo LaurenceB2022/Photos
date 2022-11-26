@@ -23,7 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class UserController {
+public class UserController extends Logout{
     @FXML
     private TextField enterAlbum;
     @FXML
@@ -121,7 +121,9 @@ public class UserController {
         stage.show();
     }
 
-
+    public void closeAndLogout() throws IOException {
+        Logout(stage);
+    }
 
 
 }

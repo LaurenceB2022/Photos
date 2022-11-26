@@ -30,27 +30,27 @@ import java.util.Date;
 public class AlbumController {
 
     @FXML
-    public Button copyPhoto;
+    private Button copyPhoto;
     @FXML
-    public Button movePhoto;
+    private Button movePhoto;
     @FXML
-    public Button removeTag;
+    private Button removeTag;
     @FXML
-    public Button addTag;
+    private Button addTag;
     @FXML
-    public Button addPhoto;
+    private Button addPhoto;
     @FXML
-    public Button removePhoto;
+    private Button removePhoto;
     @FXML
-    public Button captionPhoto;
+    private Button captionPhoto;
     @FXML
-    public Button viewSlides;
+    private Button viewSlides;
     @FXML
-    public Button textAdder;
+    private Button textAdder;
     @FXML
-    public TextField text;
+    private TextField text;
     @FXML
-    public ComboBox tagType;
+    private ComboBox tagType;
     @FXML
     private TilePane tilePane;
     @FXML

@@ -29,9 +29,9 @@ public class LoginController{
     public static final String storeDir = "docs";
 
     @FXML
-    public TextField text_entry;
+    private TextField text_entry;
     @FXML
-    public Button enter;
+    private Button enter;
 
 
 
@@ -87,6 +87,7 @@ public class LoginController{
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            enter.setDisable(true);
             return;
         }
 
@@ -101,6 +102,7 @@ public class LoginController{
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
+                    enter.setDisable(true);
                     return;
                 }
             }

@@ -2,10 +2,13 @@ package photos;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,9 +21,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 
-public class AdminController {
-    public static final String storeFile = "users.dat";
-    public static final String storeDir = "docs";
+public class AdminController extends Logout {
+    private static final String storeFile = "users.dat";
+    private static final String storeDir = "docs";
     private static Admin admin;
     @FXML
     private ListView<User> userView;
@@ -46,6 +49,7 @@ public class AdminController {
 
     public void initialize() throws IOException, ClassNotFoundException {
 
+        Logout myLogout = new Logout();
         writeAdmin(admin);
 
     }
@@ -109,8 +113,20 @@ public class AdminController {
             return;
         }
 
+        //Deletes the user from the admin object
         int selectedIndex = userView.getSelectionModel().getSelectedIndex();
-        User selectedUser;
+        User selectedUser = obsList.get(selectedIndex);
+        for(int index = 0; index < admin.getRegistered_users().size(); index++){
+
+            if(selectedUser.toString().equals(admin.getRegistered_users().get(index).toString())){
+                admin.registered_users.remove(index);
+                //Updates the file
+                writeAdmin(admin);
+            }
+        }
+
+
+        //Handles selecting the next user in the observable list
         int newIndex;
 
         //Checks if there is a user after this one
@@ -126,12 +142,14 @@ public class AdminController {
 
         }
 
+        //updates the observable list
         obsList.remove(selectedIndex);
-
-        //Updates the file
-        writeAdmin(admin);
         userView.setItems(FXCollections.observableList(obsList));
 
+    }
+
+    public void closeAndLogout() throws IOException {
+        Logout(stage);
     }
 
 

@@ -12,13 +12,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SlideshowController {
+public class SlideshowController extends Logout{
 
     private int index = 0;
     private static Album currentAlbum;
     private static Stage stage;
     @FXML
-    public ImageView picture;
+    private ImageView picture;
 
     public void goBack(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -54,5 +54,9 @@ public class SlideshowController {
         }
         index++;
         picture.setImage(new Image(currentAlbum.getPhotos().get(index).getPath(),200,200,false,false));
+    }
+
+    public void closeAndLogout() throws IOException {
+        Logout(stage);
     }
 }

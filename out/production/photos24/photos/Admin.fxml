@@ -25,6 +25,11 @@
                 <ListView fx:id="userView"/>
             </HBox>
 
+            <HBox fx:id="LogOut" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10" >
+                <Button fx:id="LogoutB" text="Logout" disable="false" onAction="#closeAndLogout" />
+            </HBox>
+
+
 
 
 
