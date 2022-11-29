@@ -13,8 +13,8 @@
     <HBox AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="25" >
         <VBox  spacing="10" >
     <HBox spacing="10">
-        <TextField promptText="Enter Photo Description"/>
-        <Button text="Search"/>
+        <TextField fx:id="searchPhotoTag" promptText="Enter Photo Description" onKeyTyped="#photoSearch"/>
+        <Button fx:id="search" text="Search Photos" disable="true" onAction="#checkTags"/>
 
     </HBox>
             <TextField fx:id="enterAlbum" promptText="Enter Album" onKeyTyped="#albumNameChanged"/>

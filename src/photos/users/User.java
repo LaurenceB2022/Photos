@@ -20,6 +20,7 @@ public class User implements Serializable {
         albums = new ArrayList<Album>();
         tagTypes = new ArrayList<String>();
         tagTypes.add("location");
+        tagTypes.add("person");
         userPhotos = new ArrayList<Photo>();
     }
 

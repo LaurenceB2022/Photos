@@ -150,7 +150,7 @@ public class AdminController {
     public void closeAndLogout() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("Login.fxml"));
-        AnchorPane root = (AnchorPane)loader.load();
+        AnchorPane root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
