@@ -14,11 +14,11 @@
         <VBox  spacing="10" >
     <HBox spacing="10">
         <TextField fx:id="searchPhotos" promptText="Enter 'tag=value' or 'MM/DD/YYYY - MM/DD/YYYY'" onKeyTyped="#photoSearch"/>
-        <Button fx:id="searchTags" text="Search Photos" disable="true" onAction="#checkTags"/>
         <Button fx:id="addTagSearch" text="Add Tag" disable="true" onAction="#addTagSearch"/>
         <Button fx:id="searchDateRange" text="Search Dates" disable="true" onAction="#checkDateRange"/>
-        <Button fx:id="conjuntiveSearch" text="AND" disable="true"/>
-        <Button fx:id="disjunctiveSearch" text="OR" disable="true"/>
+        <Button fx:id="singularSearch" text="Single Tag" disable="true" onAction="#checkTagsSingular"/>
+        <Button fx:id="conjunctiveSearch" text="AND" disable="true" onAction="#conjunctiveSearch"/>
+        <Button fx:id="disjunctiveSearch" text="OR" disable="true" onAction="#disjunctiveSearch"/>
 
     </HBox>
             <TextField fx:id="enterAlbum" promptText="Enter Album" onKeyTyped="#albumNameChanged"/>

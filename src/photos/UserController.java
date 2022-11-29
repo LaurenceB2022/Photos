@@ -41,8 +41,6 @@ public class UserController{
     @FXML
     private Button searchDateRange;
     @FXML
-    private Button searchTags;
-    @FXML
     private Button addTag;
     @FXML
     private Button createAlbum;
@@ -52,6 +50,14 @@ public class UserController{
     private Button openAlbum;
     @FXML
     private Button deleteAlbum;
+    @FXML
+    private Button conjunctiveSearch;
+    @FXML
+    private Button disjunctiveSearch;
+    @FXML
+    private Button singularSearch;
+    @FXML
+    private Button addTagSearch;
 
 
 
@@ -143,19 +149,54 @@ public class UserController{
         stage.show();
     }
 
-    public void checkTags(ActionEvent actionEvent){
+    public void conjunctiveSearch(ActionEvent actionEvent){
+
+    }
+    public void disjunctiveSearch(ActionEvent actionEvent){
+
+    }
+
+    public void addTagSearch(ActionEvent actionEvent){
+        singularSearch.setDisable(false);
+        disjunctiveSearch.setDisable(false);
+        conjunctiveSearch.setDisable(false);
+        searchDateRange.setDisable(false);
+
+    }
+
+    public void photoSearch(ActionEvent actionEvent) throws IOException {
+        if(searchPhotos.getText().trim().length() > 0){
+            addTagSearch.setDisable(false);
+        }
+        if(searchPhotos.getText().length() == 0){
+
+            addTagSearch.setDisable(true);
+        }
+
+
+    }
+
+    public void checkTagsSingular(ActionEvent actionEvent){
+        //Disables other buttons
         searchPhotos.setDisable(true);
+        disjunctiveSearch.setDisable(false);
+        conjunctiveSearch.setDisable(false);
+        searchDateRange.setDisable(false);
+        //Gets the textfield string
         String tag_string = searchPhotos.getText().trim();
         String tag_type;
         String tag_details;
         String[] sub = tag_string.split("=");
-        if(!tag_string.contains("=") || sub.length < 2 || sub.length%2 != 0){
+        //Checks if the tag is in the correct form
+        if(!tag_string.contains("=") || sub.length != 2 ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Incorrect format. Tags need to be in the form [tag type]=[tag name]");
+            alert.setHeaderText("Incorrect format. Singular tags need to be in the form [tag type]=[tag name]");
             alert.show();
             searchPhotos.setDisable(false);
+            singularSearch.setDisable(true);
             return;
         }
+        //Assigns the tag type and tag value
         tag_type = sub[0];
         tag_details = sub[1];
 
@@ -299,39 +340,11 @@ public class UserController{
         //Sets and displays
         photos.setItems(FXCollections.observableList(photos_list));
         //Display the photos in the date range, and disables the option to create an Album out of the results
+        albums.setDisable(true);
         createAlbum.setDisable(false);
-
 
         searchPhotos.setDisable(true);
 
-
-    }
-    public void addTagSearch(ActionEvent actionEvent){
-        String textfield = searchPhotos.getText().trim();
-        StringTokenizer tokenizer = new StringTokenizer(textfield);
-        if(tokenizer.countTokens() < 2){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Not enough parameters entered");
-            alert.show();
-            return;
-        }
-
-        //Checks the tag type
-        String tag
-
-    }
-
-    public void photoSearch(ActionEvent actionEvent) throws IOException {
-        if(searchPhotos.getText().trim().length() > 0){
-            searchTags.setDisable(false);
-            addTag.setDisable(false);
-            searchDateRange.setDisable(false);
-        }
-        if(searchPhotos.getText().length() == 0){
-            searchTags.setDisable(true);
-            addTag.setDisable(true);
-            searchDateRange.setDisable(true);
-        }
 
     }
 
