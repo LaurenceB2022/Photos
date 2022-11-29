@@ -72,6 +72,8 @@ public class LoginController{
     }
 
     public void enableLogin(ActionEvent e){
+
+
         enter.setDisable(false);
     }
 
