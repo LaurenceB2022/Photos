@@ -225,7 +225,7 @@ public class UserController{
         String tag_string = searchPhotos.getText().trim();
         String tag1;
         String tag2;
-        String[g] sub = tag_string.split(" ");
+        String[] sub = tag_string.split(" ");
 
         //Checks if the tag is in the correct form
         if(!tag_string.contains(" ") || sub.length != 2 ){

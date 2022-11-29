@@ -18,8 +18,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * <h1>The Main Photos Class</h1>
+ * Class that is called at the start
+ * @author  Ismaeel Abdulghani and Laurence Bartram
+ * @version 1.0
+ * @since   2022-11-30
+ */
 public class Photos extends Application {
 
+    /**
+     * Sets the stages and starts the scenes
+     * @return Nothing
+     */
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -41,6 +52,11 @@ public class Photos extends Application {
 
     }
 
+    /**
+     * The main method
+     * @param
+     * @return Nothing
+     */
     public static void main(String[] args) {
         launch();
     }

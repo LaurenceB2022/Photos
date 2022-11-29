@@ -22,6 +22,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 
+/**
+ * <h1>The Login Controller Class</h1>
+ * Class used to control the scene displayed upon opening the app
+ * @author  Ismaeel Abdulghani and Laurence Bartram
+ * @version 1.0
+ * @since   2022-11-30
+ */
 public class LoginController{
     private static Stage stage;
     private static Admin admin;
@@ -34,11 +41,19 @@ public class LoginController{
     private Button enter;
 
 
-
+    /**
+     * Used to set the stage
+     * @param stage The current stage
+     * @return Nothing
+     */
     public static void setStage(Stage stage){
         LoginController.stage = stage;
     }
 
+    /**
+     * Called when the scene is first loaded
+     * @return Nothing
+     */
     public void initialize() throws IOException, ClassNotFoundException {
 
 
@@ -50,6 +65,10 @@ public class LoginController{
         AdminController.setAdmin(admin);
     }
 
+    /**
+     * Used to deserialize the data from the file and set the admin
+     * @return Nothing
+     */
     public static void readAdmin() throws IOException {
 
 
@@ -71,13 +90,22 @@ public class LoginController{
 
     }
 
+    /**
+     * Used to enable the login button
+     * @param e
+     * @return Nothing
+     */
     public void enableLogin(ActionEvent e){
 
 
         enter.setDisable(false);
     }
 
-    //Handles login
+    /**
+     * Used to log in after entering the username
+     * @param e
+     * @return Nothing
+     */
     public void login(ActionEvent e) throws IOException {
         String entered_input = text_entry.getText();
 

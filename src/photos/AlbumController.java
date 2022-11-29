@@ -211,6 +211,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to remove the photo from the album
+     * @param actionEvent
+     * @return Nothing
+     */
     public void removePhoto(ActionEvent actionEvent) {
         display.getChildren().clear();
         currentAlbum.removePhoto(currentPhoto);
@@ -226,6 +231,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to enable the caption button
+     * @param actionEvent
+     * @return Nothing
+     */
     public void enableCaption(ActionEvent actionEvent) {
         if(captionMode){
             captionMode = false;
@@ -253,6 +263,12 @@ public class AlbumController {
         }
         display();
     }
+
+    /**
+     * Called to add a tag or caption
+     * @param actionEvent
+     * @return Nothing
+     */
 
     public void addText(ActionEvent actionEvent) {
         if(captionMode){
@@ -293,6 +309,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to enable the tag button
+     * @param actionEvent
+     * @return Nothing
+     */
     public void enableTag(ActionEvent actionEvent) {
         if(tagMode){
             tagMode = false;
@@ -319,6 +340,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to remove a selected tag from a photo
+     * @param actionEvent
+     * @return Nothing
+     */
     public void removeTag(ActionEvent actionEvent) {
         currentPhoto.getTags().remove(currentTag);
 
@@ -333,6 +359,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to copy a photo to a different album
+     * @param actionEvent
+     * @return Nothing
+     */
     public void copyPhoto(ActionEvent actionEvent) {
         if(copyMode){
             display.getChildren().clear();
@@ -377,6 +408,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to move a photo to a different album
+     * @param actionEvent
+     * @return Nothing
+     */
     public void movePhoto(ActionEvent actionEvent) {
         if(moveMode){
             display.getChildren().clear();
@@ -425,6 +461,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to move to the Slideshow scene
+     * @param actionEvent
+     * @return Nothing
+     */
     public void viewSlideshow(ActionEvent actionEvent) throws IOException {
         SlideshowController.setCurrentAlbum(currentAlbum);
         FXMLLoader loader = new FXMLLoader();
@@ -436,6 +477,11 @@ public class AlbumController {
         stage.show();
     }
 
+    /**
+     * Called to move back to the User Screen
+     * @param actionEvent
+     * @return Nothing
+     */
     public void goBack(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("User.fxml"));
