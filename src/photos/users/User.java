@@ -100,6 +100,14 @@ public class User implements Serializable {
 
     }
 
+    public Album getAlbum(String album_name){
+        for(int index = 0; index < albums.size(); index++){
+            if(albums.get(index).getName().compareTo(album_name) == 0){
+                return albums.get(index);
+            }
+        }
+        return null;
+    }
     /**
      * Getter method for all the user photos
      * @return ArrayList<Photo>
