@@ -16,11 +16,11 @@
                     <Button fx:id="Show_Users" text="Show Users" onAction="#showUsers" />
                     <Button fx:id="Add_User" text="Add A New User" onAction="#addUser" disable="true"/>
                     <Button fx:id="Remove_User" text="Delete A User" onAction="#deleteUser" disable="true"/>
-                    <TextField fx:id="User_Entry" promptText="Enter Name"  maxWidth="100" layoutX="50" />
+                    <TextField fx:id="User_Entry" promptText="Enter Name"  maxWidth="100" layoutX="50" onAction="" />
                 </children>
             </HBox>
 
-            <VBox fx:id="HBoxUsers" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="40" layoutY = "50" >
+            <VBox fx:id="HBoxUsers" AnchorPane.rightAnchor="100" AnchorPane.topAnchor="40" layoutY = "50" AnchorPane.bottomAnchor="50" >
                 <ListView fx:id="userView"/>
             </VBox>
 

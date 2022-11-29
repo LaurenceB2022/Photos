@@ -76,7 +76,7 @@ public class AdminController {
             User user = new User(username);
 
             //checks to see if the user already exists
-            for (int i = 0; i < obsList.size(); i++) {
+            for (int i = 0; i < admin.getRegistered_users().size(); i++) {
                 User currentUser = obsList.get(i);
 
                 int cmp = currentUser.getUsername().compareToIgnoreCase(username);
@@ -88,7 +88,7 @@ public class AdminController {
                         return;
                 }
             }
-            obsList.add(user);
+
             admin.addUser(user);
             writeAdmin(admin);
             userView.setItems(FXCollections.observableList(obsList));
@@ -154,6 +154,15 @@ public class AdminController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void enableButtons(){
+        if(User_Entry.getText()!=null && User_Entry.getText().length()>0 ){
+
+            Add_User.setDisable(false);
+            Remove_User.setDisable(false);
+
+        }
     }
 
 

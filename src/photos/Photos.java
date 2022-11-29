@@ -27,7 +27,7 @@ public class Photos extends Application {
 
 
         UserController.setStage(stage);
-
+        AdminController.setStage(stage);
         AlbumController.setStage(stage);
         SlideshowController.setStage(stage);
 

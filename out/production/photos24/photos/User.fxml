@@ -13,8 +13,12 @@
     <HBox AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="25" >
         <VBox  spacing="10" >
     <HBox spacing="10">
-        <TextField fx:id="searchPhotoTag" promptText="Enter Photo Description" onKeyTyped="#photoSearch"/>
-        <Button fx:id="search" text="Search Photos" disable="true" onAction="#checkTags"/>
+        <TextField fx:id="searchPhotos" promptText="Enter 'tag=value' or 'MM/DD/YYYY - MM/DD/YYYY'" onAction="#photoSearch"/>
+        <Button fx:id="addTagSearch" text="Add Tag" disable="true" onAction="#addTagSearch"/>
+        <Button fx:id="searchDateRange" text="Search Dates" disable="true" />
+        <Button fx:id="singularSearch" text="Single Tag" disable="true" onAction="#checkTagsSingular"/>
+        <Button fx:id="conjunctiveSearch" text="AND" disable="true" onAction="#conjunctiveSearch"/>
+        <Button fx:id="disjunctiveSearch" text="OR" disable="true" onAction="#disjunctiveSearch"/>
 
     </HBox>
             <TextField fx:id="enterAlbum" promptText="Enter Album" onKeyTyped="#albumNameChanged"/>
@@ -27,6 +31,7 @@
         <HBox spacing="10">
             <Button fx:id="renameAlbum" disable="true" text="Rename Album" onAction="#renameAlbum"/>
             <Button fx:id="openAlbum" disable="true" text="Open Album" onAction="#openAlbum"/>
+            <TilePane fx:id="photos" disable="true" />
         </HBox>
 
     </VBox>

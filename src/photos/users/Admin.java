@@ -17,17 +17,12 @@ public class Admin implements Serializable{
     public Admin(){
         registered_users = new ArrayList<User>();
                 User stock = new User("stock");
-        Photo first = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/cherry-blossoms-korea-beautiful-34712339.jpeg");
-        Photo second = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/feet-bathroom-scale-isolated-792851.jpeg");
-        Photo third = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/horse-racing-hong-kong-34749739.jpeg");
-        Photo fourth = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/low-gi-foods-healthy-weight-loss-slimming-diet-29310784.jpeg");
-        Photo fifth = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/supermarket-refrigerated-shelves-december-located-parknshop-tseung-kwan-o-hong-kong-35867257.jpeg");
+
         Album stockAlbum = stock.createAlbum("stock");
-        stockAlbum.addPhoto(first);
-        stockAlbum.addPhoto(second);
-        stockAlbum.addPhoto(third);
-        stockAlbum.addPhoto(fourth);
-        stockAlbum.addPhoto(fifth);
+        for(Photo e: stock.userPhotos){
+            stockAlbum.addPhoto(e);
+
+        }
         registered_users.add(stock);
     }
 
