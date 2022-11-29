@@ -15,10 +15,11 @@
     <HBox spacing="10">
         <TextField fx:id="searchPhotos" promptText="Enter 'tag=value' or 'MM/DD/YYYY - MM/DD/YYYY'" onAction="#photoSearch"/>
         <Button fx:id="addTagSearch" text="Add Tag" disable="true" onAction="#addTagSearch"/>
-        <Button fx:id="searchDateRange" text="Search Dates" disable="true" />
+        <Button fx:id="searchDateRange" text="Search Dates" disable="true" onAction="#checkDateRange"/>
         <Button fx:id="singularSearch" text="Single Tag" disable="true" onAction="#checkTagsSingular"/>
         <Button fx:id="conjunctiveSearch" text="AND" disable="true" onAction="#conjunctiveSearch"/>
         <Button fx:id="disjunctiveSearch" text="OR" disable="true" onAction="#disjunctiveSearch"/>
+        <Button fx:id="clear" text="Clear Search" disable="true" onAction="#clearPhotoSearch"/>
 
     </HBox>
             <TextField fx:id="enterAlbum" promptText="Enter Album" onKeyTyped="#albumNameChanged"/>

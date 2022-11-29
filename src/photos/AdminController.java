@@ -21,6 +21,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 
+/**
+ * <h1>The Admin Controller Class</h1>
+ * Controller class for the admin screen
+ * @author  Ismaeel Abdulghani and Laurence Bartram
+ * @version 1.0
+ * @since   2022-11-30
+ */
 public class AdminController {
     private static final String storeFile = "users.dat";
     private static final String storeDir = "docs";
@@ -41,29 +48,51 @@ public class AdminController {
 
     private static Stage stage;
 
+    /**
+     * Sets the stage for this class
+     * @param stage The current stage
+     * @return Nothing
+     */
     public static void setStage(Stage stage){
         AdminController.stage = stage;
     }
+    /**
+     * Sets the admin for the session
+     * @param current The admin
+     * @return Nothing
+     */
     public static void setAdmin(Admin current){
         AdminController.admin = current;}
 
+    /**
+     * Called when the scene is first loaded
+     * @return Nothing
+     */
     public void initialize() throws IOException, ClassNotFoundException {
 
-        writeAdmin(admin);
+        writeAdmin();
 
     }
 
-    public static void writeAdmin(Admin curr) throws IOException{
+    /**
+     * Used to serialize data whenever we update
+     * @return Nothing
+     */
+    public static void writeAdmin() throws IOException{
         ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(storeDir + File.separator + storeFile));
 
 
-        oos.writeObject(curr);
+        oos.writeObject(admin);
 
         oos.close();
 
     }
-
+    /**
+     * Used when the "Add User" button is pressed to possibly add a new user
+     * @param e
+     * @return Nothing
+     */
     public void addUser(ActionEvent e) throws IOException {
         String username = User_Entry.getText().trim();
         if(username.isEmpty()){
@@ -90,7 +119,7 @@ public class AdminController {
             }
 
             admin.addUser(user);
-            writeAdmin(admin);
+            writeAdmin();
             userView.setItems(FXCollections.observableList(obsList));
             userView.getSelectionModel().select(user);
             Add_User.setDisable(true);
@@ -98,11 +127,21 @@ public class AdminController {
 
     }
 
+    /**
+     * Used to show the different users in the list
+     * @param e
+     * @return Nothing
+     */
     public void showUsers(ActionEvent e){
         obsList = admin.getRegistered_users();
         userView.setItems(FXCollections.observableList(obsList));
     }
 
+    /**
+     * Used when the Delete User button is pressed to possibly remove the user from the app
+     * @param e
+     * @return Nothing
+     */
     public void deleteUser(ActionEvent e) throws IOException {
         //Checks if any users exists
         if(obsList.size() == 0){
@@ -120,7 +159,7 @@ public class AdminController {
             if(selectedUser.toString().equals(admin.getRegistered_users().get(index).toString())){
                 admin.registered_users.remove(index);
                 //Updates the file
-                writeAdmin(admin);
+                writeAdmin();
             }
         }
 
@@ -147,6 +186,10 @@ public class AdminController {
 
     }
 
+    /**
+     * Used to switch back the login screen
+     * @return Nothing
+     */
     public void closeAndLogout() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("Login.fxml"));
@@ -156,14 +199,7 @@ public class AdminController {
         stage.show();
     }
 
-    public void enableButtons(){
-        if(User_Entry.getText()!=null && User_Entry.getText().length()>0 ){
 
-            Add_User.setDisable(false);
-            Remove_User.setDisable(false);
-
-        }
-    }
 
 
 

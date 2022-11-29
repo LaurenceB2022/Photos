@@ -27,6 +27,13 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * <h1>The Album Controller Class</h1>
+ * Class used to control the scene that displays album information
+ * @author  Ismaeel Abdulghani and Laurence Bartram
+ * @version 1.0
+ * @since   2022-11-30
+ */
 public class AlbumController {
 
     @FXML
@@ -66,16 +73,38 @@ public class AlbumController {
     private String currentTag;
 
 
+    /**
+     * Sets the stage of this scene
+     * @param stage The stage
+     * @return Nothing
+     */
     public static void setStage(Stage stage){
         AlbumController.stage = stage;
     }
 
+    /**
+     * Sets the user of the current album beforehand
+     * @param user The User
+     * @return Nothing
+     */
+
     public static void setCurrent(User user){
         current = user;
     }
+
+    /**
+     * Sets album of the scene beforehand
+     * @param album The album
+     * @return Nothing
+     */
     public static void setCurrentAlbum(Album album){
         currentAlbum =album;
     }
+
+    /**
+     * Called when the scene is first loaded in to set it up
+     * @return Nothing
+     */
 
     public void initialize() throws IOException {
         tagType.setItems(FXCollections.observableList((current.tagTypes)));
@@ -84,6 +113,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to get a photo from the computer to add to the app
+     * @param actionEvent
+     * @return Nothing
+     */
     public void addPhoto(ActionEvent actionEvent) {
                 FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
@@ -93,7 +127,7 @@ public class AlbumController {
 
         if(file!=null){
             Photo photo=null;
-            for(Photo userPhoto: current.userPhotos){
+            for(Photo userPhoto: current.getUserPhotos()){
                 if(userPhoto.getPath().equals(file.toURI().toString())){
                     photo = userPhoto;
                 }
@@ -102,12 +136,16 @@ public class AlbumController {
                 photo = new Photo((file.toURI().toString()));
             }
 
-
+            current.addPhoto(photo);
             currentAlbum.addPhoto(photo);
         }
         display();
     }
 
+    /**
+     * Called to display all the different photos in the scene
+     * @return Nothing
+     */
     public void display(){
         tilePane.getChildren().clear();
         for(Photo photo:currentAlbum.getPhotos()){
@@ -135,6 +173,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to display the current selected photo in the screen
+     * @param actionEvent
+     * @return Nothing
+     */
     public void showCurrentPhoto(){
         Photo photo = currentPhoto;
         Image image2 = new Image(photo.getPath(),100, 100, false, false);
@@ -168,6 +211,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to remove the photo from the album
+     * @param actionEvent
+     * @return Nothing
+     */
     public void removePhoto(ActionEvent actionEvent) {
         display.getChildren().clear();
         currentAlbum.removePhoto(currentPhoto);
@@ -183,6 +231,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to enable the caption button
+     * @param actionEvent
+     * @return Nothing
+     */
     public void enableCaption(ActionEvent actionEvent) {
         if(captionMode){
             captionMode = false;
@@ -210,6 +263,12 @@ public class AlbumController {
         }
         display();
     }
+
+    /**
+     * Called to add a tag or caption
+     * @param actionEvent
+     * @return Nothing
+     */
 
     public void addText(ActionEvent actionEvent) {
         if(captionMode){
@@ -250,6 +309,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to enable the tag button
+     * @param actionEvent
+     * @return Nothing
+     */
     public void enableTag(ActionEvent actionEvent) {
         if(tagMode){
             tagMode = false;
@@ -276,6 +340,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to remove a selected tag from a photo
+     * @param actionEvent
+     * @return Nothing
+     */
     public void removeTag(ActionEvent actionEvent) {
         currentPhoto.getTags().remove(currentTag);
 
@@ -290,6 +359,11 @@ public class AlbumController {
         display();
     }
 
+    /**
+     * Called to copy a photo to a different album
+     * @param actionEvent
+     * @return Nothing
+     */
     public void copyPhoto(ActionEvent actionEvent) {
         if(copyMode){
             display.getChildren().clear();
@@ -334,6 +408,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to move a photo to a different album
+     * @param actionEvent
+     * @return Nothing
+     */
     public void movePhoto(ActionEvent actionEvent) {
         if(moveMode){
             display.getChildren().clear();
@@ -382,6 +461,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to move to the Slideshow scene
+     * @param actionEvent
+     * @return Nothing
+     */
     public void viewSlideshow(ActionEvent actionEvent) throws IOException {
         SlideshowController.setCurrentAlbum(currentAlbum);
         FXMLLoader loader = new FXMLLoader();
@@ -393,6 +477,11 @@ public class AlbumController {
         stage.show();
     }
 
+    /**
+     * Called to move back to the User Screen
+     * @param actionEvent
+     * @return Nothing
+     */
     public void goBack(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("User.fxml"));
