@@ -17,6 +17,8 @@
         <Button fx:id="searchTags" text="Search Photos" disable="true" onAction="#checkTags"/>
         <Button fx:id="addTagSearch" text="Add Tag" disable="true" onAction="#addTagSearch"/>
         <Button fx:id="searchDateRange" text="Search Dates" disable="true" onAction="#checkDateRange"/>
+        <Button fx:id="conjuntiveSearch" text="AND" disable="true"/>
+        <Button fx:id="disjunctiveSearch" text="OR" disable="true"/>
 
     </HBox>
             <TextField fx:id="enterAlbum" promptText="Enter Album" onKeyTyped="#albumNameChanged"/>

@@ -46,6 +46,7 @@ public class User implements Serializable {
     public ArrayList<Album> getAlbums(){
         return albums;
     }
+    public int getNumAlbums(){ return albums.size(); }
 
     public String toString(){
         return this.username;

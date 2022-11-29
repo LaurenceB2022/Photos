@@ -1,5 +1,7 @@
 package photos;
 
+import javafx.util.converter.LocalDateStringConverter;
+
 import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Path;
@@ -15,7 +17,7 @@ public class Photo implements Serializable {
     private String path;
     private String caption;
     Date lastModified;
-
+    private LocalDate last_date;
     private ArrayList<String> tags;
     private ArrayList<Tag> obj_tags;
 
@@ -23,7 +25,8 @@ public class Photo implements Serializable {
         this.path = path;
         tags = new ArrayList<String>();
         obj_tags = new ArrayList<Tag>();
-        lastModified = new Date(new File(path.substring(5)).lastModified());
+        last_date = LocalDate.now();
+        lastModified =  new Date(new File(path.substring(5)).lastModified());
     }
 
     public String getPath(){
@@ -35,6 +38,8 @@ public class Photo implements Serializable {
     public String getCaption(){
         return caption;
     }
+    public Date getLastModified(){ return lastModified; }
+
 
     public void addTag(String tag){
         if(tag.startsWith("location=")&&tags.size()>0&&tags.get(0).startsWith("location=")){
@@ -54,4 +59,5 @@ public class Photo implements Serializable {
     public ArrayList<String> getTags(){
         return tags;
     }
+    public ArrayList<Tag> getObj_tags(){ return obj_tags; }
 }
