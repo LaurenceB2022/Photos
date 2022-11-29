@@ -27,6 +27,13 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * <h1>The Album Controller Class</h1>
+ * Class used to control the scene that displays album information
+ * @author  Ismaeel Abdulghani and Laurence Bartram
+ * @version 1.0
+ * @since   2022-11-30
+ */
 public class AlbumController {
 
     @FXML
@@ -66,16 +73,38 @@ public class AlbumController {
     private String currentTag;
 
 
+    /**
+     * Sets the stage of this scene
+     * @param stage The stage
+     * @return Nothing
+     */
     public static void setStage(Stage stage){
         AlbumController.stage = stage;
     }
 
+    /**
+     * Sets the user of the current album beforehand
+     * @param user The User
+     * @return Nothing
+     */
+
     public static void setCurrent(User user){
         current = user;
     }
+
+    /**
+     * Sets album of the scene beforehand
+     * @param album The album
+     * @return Nothing
+     */
     public static void setCurrentAlbum(Album album){
         currentAlbum =album;
     }
+
+    /**
+     * Called when the scene is first loaded in to set it up
+     * @return Nothing
+     */
 
     public void initialize() throws IOException {
         tagType.setItems(FXCollections.observableList((current.tagTypes)));
@@ -84,6 +113,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to get a photo from the computer to add to the app
+     * @param actionEvent
+     * @return Nothing
+     */
     public void addPhoto(ActionEvent actionEvent) {
                 FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
@@ -93,7 +127,7 @@ public class AlbumController {
 
         if(file!=null){
             Photo photo=null;
-            for(Photo userPhoto: current.userPhotos){
+            for(Photo userPhoto: current.getUserPhotos()){
                 if(userPhoto.getPath().equals(file.toURI().toString())){
                     photo = userPhoto;
                 }
@@ -102,12 +136,16 @@ public class AlbumController {
                 photo = new Photo((file.toURI().toString()));
             }
 
-
+            current.addPhoto(photo);
             currentAlbum.addPhoto(photo);
         }
         display();
     }
 
+    /**
+     * Called to display all the different photos in the scene
+     * @return Nothing
+     */
     public void display(){
         tilePane.getChildren().clear();
         for(Photo photo:currentAlbum.getPhotos()){
@@ -135,6 +173,11 @@ public class AlbumController {
 
     }
 
+    /**
+     * Called to display the current selected photo in the screen
+     * @param actionEvent
+     * @return Nothing
+     */
     public void showCurrentPhoto(){
         Photo photo = currentPhoto;
         Image image2 = new Image(photo.getPath(),100, 100, false, false);

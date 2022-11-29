@@ -150,6 +150,7 @@ public class UserController{
     }
 
     public void conjunctiveSearch(ActionEvent actionEvent){
+        photos_list= new ArrayList<Photo>();
         String tag_string = searchPhotos.getText().trim();
         String tag1;
         String tag2;
@@ -175,7 +176,7 @@ public class UserController{
         //Goes through all albums and adds photos that matches the tag (Note: Bug will occur with photo that occurs in multiple albums
 
         //Checks first tag
-        for(Photo e:current.userPhotos){
+        for(Photo e:current.getUserPhotos()){
 
             for(String tag_1: e.getTags()){
                 //Checks if first tag exists
@@ -220,10 +221,11 @@ public class UserController{
         clear.setDisable(false);
     }
     public void disjunctiveSearch(ActionEvent actionEvent){
+        photos_list= new ArrayList<Photo>();
         String tag_string = searchPhotos.getText().trim();
         String tag1;
         String tag2;
-        String[] sub = tag_string.split(" ");
+        String[g] sub = tag_string.split(" ");
 
         //Checks if the tag is in the correct form
         if(!tag_string.contains(" ") || sub.length != 2 ){
@@ -241,7 +243,7 @@ public class UserController{
 
 
         //Checks first tag
-        for(Photo e:current.userPhotos){
+        for(Photo e:current.getUserPhotos()){
 
             boolean exists = false;
 
@@ -328,7 +330,7 @@ public class UserController{
 
         //Goes through all albums and adds photos that matches the tag (Note: Bug will occur with photo that occurs in multiple albums
 
-        for(Photo e:current.userPhotos){
+        for(Photo e:current.getUserPhotos()){
 
             for(String tag: e.getTags()){
                 if(tag.equals(tag_string)){
@@ -494,7 +496,7 @@ public class UserController{
         }
 
 
-        for(Photo e:current.userPhotos){
+        for(Photo e:current.getUserPhotos()){
             LocalDate current_date = e.getLast_date_modified();
 
             //Date range
