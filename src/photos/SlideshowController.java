@@ -11,6 +11,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+/**
+ * <h1>The Slideshow Screen Controller</h1>
+ * This class that is mainly used to manage the Slideshow.fxml file,
+ * switch the stage to the User stage, handle button and text inputs,
+ * and manage the ListViews and ImageViews.
+ *
+ * @author  Ismaeel Abdulghani and Laurence Bartram
+ * @version 1.0
+ * @since   2022-11-29
+ */
 
 public class SlideshowController {
 

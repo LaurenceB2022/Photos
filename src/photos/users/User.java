@@ -56,7 +56,14 @@ public class User implements Serializable {
     public ArrayList<Album> getAlbums(){
         return albums;
     }
-    public int getNumAlbums(){ return albums.size(); }
+    public Album getAlbum(String album_name){
+        for(int index = 0; index < albums.size(); index++){
+            if(albums.get(index).getName().equals(album_name)){
+                return albums.get(index);
+            }
+        }
+        return null;
+    }
 
     public String toString(){
         return this.username;

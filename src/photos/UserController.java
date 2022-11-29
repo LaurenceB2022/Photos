@@ -30,6 +30,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
+/**
+ * <h1>The User Screen Controller</h1>
+ * This class that is mainly used to manage the User.fxml file,
+ * switch the stage to the User stage, handle button and text inputs,
+ * and manage the ListViews and ImageViews.
+ *
+ * @author  Ismaeel Abdulghani and Laurence Bartram
+ * @version 1.0
+ * @since   2022-11-29
+ */
 
 public class UserController{
     @FXML
@@ -127,9 +137,31 @@ public class UserController{
     }
 
     public void createAlbum(ActionEvent actionEvent) {
-        current.createAlbum(enterAlbum.getText().trim());
+        String album_name = enterAlbum.getText().trim();
+        if(album_name.length() < 1){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid name");
+            alert.show();
+            searchPhotos.setDisable(false);
+            createAlbum.setDisable(true);
+            return;
+        }
+        current.createAlbum(album_name);
         enterAlbum.clear();
+
+        //Checks if we're creating an Album from search results. Condition being if the photo view is enabled and there
+        //is 1 or more photos found from the search results.
+        if(!photos.isDisable() && photos_list.size() > 0){
+            Album current_album = current.getAlbum(album_name);
+            for(int index = 0; index < photos_list.size(); index++){
+                current_album.addPhoto(photos_list.get(index));
+            }
+            photos.setDisable(true);
+
+        }
+
         albums.setItems(FXCollections.observableList((current.getAlbums())));
+
         createAlbum.setDisable(true);
     }
 
@@ -215,7 +247,7 @@ public class UserController{
 
         }
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
-
+        conjunctiveSearch.setDisable(true);
         searchPhotos.setDisable(false);
         clear.setDisable(false);
     }
@@ -273,7 +305,7 @@ public class UserController{
 
         }
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
-
+        disjunctiveSearch.setDisable(true);
         searchPhotos.setDisable(false);
         clear.setDisable(false);
     }
@@ -374,7 +406,7 @@ public class UserController{
 
 
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
-
+        singularSearch.setDisable(true);
         searchPhotos.setDisable(false);
         clear.setDisable(false);
     }
@@ -420,10 +452,6 @@ public class UserController{
             }
 
         }
-
-
-
-
 
         return true;
     }
@@ -532,7 +560,7 @@ public class UserController{
         }
 
         createAlbum.setDisable(false);
-
+        searchDateRange.setDisable(true);
         searchPhotos.setDisable(true);
 
 
