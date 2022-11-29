@@ -237,10 +237,44 @@ public class UserController{
         //Assigns the tag type and tag value
         tag1 = sub[0];
         tag2 = sub[1];
-        boolean exists = false;
         Photo current_photo;
 
 
+        //Checks first tag
+        for(Photo e:current.userPhotos){
+
+            boolean exists = false;
+
+            for(String tag_1: e.getTags()){
+                //Checks if first tag exists
+                if(tag_1.equals(tag1)){
+                    photos_list.add(e);
+                    exists = true;
+                    break; //Continues to next photo, since tag was found
+                }
+            }
+            if(!exists){
+                //Checks for the existence of the second tag. This only runs if the first tag wasn't found
+                for(String tag_2: e.getTags()){
+                    if(tag_2.equals(tag2)){
+                        photos_list.add(e);
+                        break;
+                    }
+                }
+            }
+
+        }
+        photos.setDisable(false);
+        photos.getChildren().clear();
+        for(Photo photo:photos_list){
+            Image image = new Image(photo.getPath(),50, 50, false, false);
+            ImageView imageView = new ImageView(image);
+            photos.getChildren().addAll(imageView);
+
+        }
+        createAlbum.setDisable(false); //Enables option to create an album based on the search results
+
+        searchPhotos.setDisable(false);
         clear.setDisable(false);
     }
 
@@ -334,13 +368,9 @@ public class UserController{
 
 
 
-
-
-
             photos.getChildren().addAll(imageView);
 
         }
-
 
 
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
@@ -364,16 +394,36 @@ public class UserController{
         int month_int = Integer.parseInt(month);
         int date_int = Integer.parseInt(date);
         int year_int = Integer.parseInt(year);
-        if(month_int < 1 || month_int > 12){
-            return false;
-        }
-        else{
-
-        }
-
         if(year_int < 0 || year_int > 2022){
             return false;
         }
+        if(month_int < 1 || month_int > 12){
+            return false;
+        }else{
+            if(date_int < 1){
+                return false;
+            }
+
+            //Checks if date is greater than max date (31) for corresponding month
+            if( ((month_int == 1 || month_int == 3 || month_int == 5 || month_int == 7 || month_int == 8 || month_int == 10 || month_int == 12))
+               && (date_int > 31) ){
+                return false;
+            } //Checks if date is greater than 29 for leap year
+            if((month_int == 2) && ((year_int%4 == 0) || (year_int%100 == 0)) && (date_int > 29) ){
+                return false;
+            } //Checks if date is greater than 28 for non-leap year
+            if((month_int == 2) && (year_int%4 != 0) && date_int > 28){
+                return false;
+            } //Checks if date is greater than max date (3) for corresponding month
+            if((month_int == 4 || month_int == 6 || month_int == 9 || month_int == 11) && (date_int > 30)){
+                return false;
+            }
+
+        }
+
+
+
+
 
         return true;
     }
