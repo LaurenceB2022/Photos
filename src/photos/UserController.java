@@ -62,7 +62,7 @@ public class UserController{
     @FXML
     private ListView<Album> albums;
     @FXML
-    private ListView<Photo> photos;
+    private ImageView<Photo> photos;
     private ArrayList<Photo> photos_list;
 
     private static User current;
@@ -304,9 +304,9 @@ public class UserController{
         else if(dates.length == 1){ //1 Date entered
 
             String date_start_s = dates[0];
-            dates = date_string.split("/");
-            boolean date_valid = checkDate(dates);
-            if(dates.length != 3 || !date_valid){ //Only 1 date, so there must be 3 fields
+            String[] date = date_string.split("/");
+            boolean date_valid = checkDate(date);
+            if(date.length != 3 || !date_valid){ //Only 1 date, so there must be 3 fields
                 displayDateAlert();
                 return;
             }
