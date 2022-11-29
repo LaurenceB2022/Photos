@@ -17,7 +17,7 @@ public class Photo implements Serializable {
     private String path;
     private String caption;
     Date lastModified;
-    private LocalDate last_date;
+    private LocalDate last_date_modified;
     private ArrayList<String> tags;
     private ArrayList<Tag> obj_tags;
 
@@ -25,7 +25,7 @@ public class Photo implements Serializable {
         this.path = path;
         tags = new ArrayList<String>();
         obj_tags = new ArrayList<Tag>();
-        last_date = LocalDate.now();
+        last_date_modified = LocalDate.now();
         lastModified =  new Date(new File(path.substring(5)).lastModified());
     }
 
@@ -39,6 +39,7 @@ public class Photo implements Serializable {
         return caption;
     }
     public Date getLastModified(){ return lastModified; }
+    public LocalDate getLast_date_modified(){ return last_date_modified; }
 
 
     public void addTag(String tag){

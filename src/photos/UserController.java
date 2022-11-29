@@ -41,8 +41,6 @@ public class UserController{
     @FXML
     private Button searchDateRange;
     @FXML
-    private Button addTag;
-    @FXML
     private Button createAlbum;
     @FXML
     private Button renameAlbum;
@@ -225,9 +223,8 @@ public class UserController{
         photos.setDisable(false);
         photos.setItems(FXCollections.observableList(photos_list));
 
-
+        enterAlbum.setDisable(false);
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
-
         searchPhotos.setDisable(false);
     }
 
@@ -259,79 +256,90 @@ public class UserController{
     }
     public void displayDateAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("Incorrect format. Tags need to be in the format [tag type]=[tag name]");
+        alert.setHeaderText(
+                "Incorrect format. Tags need to be in the format [MM/DD/YYYY] or [MM/DD/YYYY - MM/DD/YYYY]" );
         alert.show();
         searchPhotos.setDisable(false);
         searchDateRange.setDisable(true);
+        addTagSearch.setDisable(true);
         return;
     }
 
     public void checkDateRange(ActionEvent actionEvent){
         searchPhotos.setDisable(true);
         String date_string = searchPhotos.getText().trim();
-        String dates[];
-        String date1[];
-        String date2[];
+        String[] dates;
         LocalDate date_start;
         LocalDate date_end;
         dates = date_string.split("-");
-        boolean incorrect_format;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        ArrayList<Album> albums_user = current.getAlbums();
+        photos_list = new ArrayList<Photo>();
 
-
-        //Determines if the searchfield is for a specific date, or range of dates
-        if(date_string.contains("-") && dates.length == 2 && date1.length == 3 && date2.length == 3){ //Range of dates
-            date1 = dates[0].split("/");
-            date2 = dates[1].split("/");
+        //Checks if input is in date - date format
+        if(dates.length == 2){
+            String date_start_s = dates[0];
+            String date_finish_s = dates[1];
+            String[] date1 = dates[0].split("/");
+            String[] date2 = dates[1].split("/");
+            //Checks if "MM" / "DD" / "YYYY" exists
+            if(date1.length != 3 || date2.length != 3){
+                displayDateAlert();
+                return;
+            }
             boolean date1_valid = checkDate(date1);
             boolean date2_valid = checkDate(date2);
+            //Checks if any date month or year is invalid
             if(!date1_valid || !date2_valid){
-                incorrect_format = true;
-            }
-            else{
-                incorrect_format = false;
+                displayDateAlert();
+                return;
             }
 
+
+            //Valid date, formats the strings to a LocalDate
+            date_start = LocalDate.parse(date_start_s, formatter);
+            date_end = LocalDate.parse(date_finish_s, formatter);
+
         }
-        else if(dates){
+        else if(dates.length == 1){ //1 Date entered
+
+            String date_start_s = dates[0];
             dates = date_string.split("/");
-            if(dates.length != 3){ //Only 1 date, so there must be 3 fields
-                incorrect_format = true;
+            boolean date_valid = checkDate(dates);
+            if(dates.length != 3 || !date_valid){ //Only 1 date, so there must be 3 fields
+                displayDateAlert();
+                return;
             }
-            incorrect_format = checkDate(dates);
+            //Valid date, converts to LocalDate
+            date_start = LocalDate.parse(date_start_s, formatter);
+            date_end = LocalDate.parse(date_start_s, formatter);
 
-        }
-
-        //Format was determined to be false. Set alert and return
-        if(incorrect_format){
+        }else{ // Too many arguments entered, displays error and returns
             displayDateAlert();
             return;
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
-        ArrayList<Album> albums_user = current.getAlbums();
-        photos_list = new ArrayList<Photo>();
-        if(dates.length == 2){
 
-            String date_start_s = date1[0] + "/" + date1[1] + date1[2];
-            date_start = LocalDate.parse();
-        }
-
-        ArrayList<Album> albums_user2 = current.getAlbums();
-        for(int index = 0; index < albums_user2.size(); index++){ //Goes through all albums
-            Album current_album = albums_user2.get(index);
-            for(int indexP = 0; indexP < current_album.getPhotos().size(); indexP++){
+        for (Album current_album : albums_user) { //Goes through all albums
+            for (int indexP = 0; indexP < current_album.getPhotos().size(); indexP++) {
                 Photo current_photo = current_album.getPhotos().get(indexP);
-                Date current_date = current_photo.getLastModified();
-                //Date range
-                if(dates.length == 2){
-                    if
-                }
-                else{ //Singular date
+                LocalDate current_date = current_photo.getLast_date_modified();
 
+                //Date range
+                if (dates.length == 2) {
+                    //Current photo date falls outside of range, continues to next photo
+                    if(!current_date.isAfter(date_start) || !current_date.isBefore(date_end)){
+                        continue;
+                    }
+                } else if(dates.length == 1){ //Singular date is not on the specified day
+                    if(!current_date.isEqual(date_start)){
+                        continue;
+                    }
                 }
+                //Passes all checks, adds the photo to the list
+                photos_list.add(current_photo);
 
             }
-
 
         }
 
