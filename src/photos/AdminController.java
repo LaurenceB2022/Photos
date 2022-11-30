@@ -21,6 +21,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 
+import static photos.Photos.writeAdmin;
+
 /**
  * <h1>The Admin Controller Class</h1>
  * Controller class for the admin screen
@@ -74,20 +76,7 @@ public class AdminController {
 
     }
 
-    /**
-     * Used to serialize data whenever we update
-     * @return Nothing
-     */
-    public static void writeAdmin() throws IOException{
-        ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream(storeDir + File.separator + storeFile));
 
-
-        oos.writeObject(admin);
-
-        oos.close();
-
-    }
     /**
      * Used when the "Add User" button is pressed to possibly add a new user
      * @param e
@@ -135,6 +124,7 @@ public class AdminController {
     public void showUsers(ActionEvent e){
         obsList = admin.getRegistered_users();
         userView.setItems(FXCollections.observableList(obsList));
+        Remove_User.setDisable(false);
     }
 
     /**
@@ -153,6 +143,9 @@ public class AdminController {
 
         //Deletes the user from the admin object
         int selectedIndex = userView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex==-1){
+            return;
+        }
         User selectedUser = obsList.get(selectedIndex);
         for(int index = 0; index < admin.getRegistered_users().size(); index++){
 
@@ -181,7 +174,7 @@ public class AdminController {
         }
 
         //updates the observable list
-        obsList.remove(selectedIndex);
+        obsList=admin.getRegistered_users();
         userView.setItems(FXCollections.observableList(obsList));
 
     }
@@ -197,6 +190,10 @@ public class AdminController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void enableButton(ActionEvent e){
+        Add_User.setDisable(false);
     }
 
 

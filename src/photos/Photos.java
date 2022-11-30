@@ -11,10 +11,10 @@ import javafx.scene.layout.GridPane;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import photos.users.Admin;
 import photos.users.User;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,6 +27,9 @@ import java.util.Date;
  */
 public class Photos extends Application {
 
+    private static final String storeFile = "users.dat";
+    private static final String storeDir = "docs";
+    public static Admin admin;
     /**
      * Sets the stages and starts the scenes
      * @return Nothing
@@ -57,10 +60,49 @@ public class Photos extends Application {
      * @param
      * @return Nothing
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        readAdmin();
+        if(admin==null){
+            admin = new Admin();
+        }
+
+        AdminController.setAdmin(admin);
+        LoginController.setAdmin(admin);
+
         launch();
     }
 
+    /**
+     * Used to serialize data whenever we update
+     * @return Nothing
+     */
+    public static void writeAdmin() throws IOException{
+        ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(storeDir + File.separator + storeFile));
+
+
+        oos.writeObject(admin);
+
+        oos.close();
+
+    }
+    public static void readAdmin() throws IOException {
+
+
+        try{
+            ObjectInputStream ois = new ObjectInputStream(
+                    new FileInputStream(storeDir + File.separator + storeFile));
+            admin = (Admin)ois.readObject();
+            ois.close();
+
+        } catch (EOFException e) {
+            //End of file
+        } catch (Exception e) {
+
+        }
+
+    }
 
 
 

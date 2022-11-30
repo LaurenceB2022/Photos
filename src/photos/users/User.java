@@ -1,7 +1,9 @@
 package photos.users;
 
+import photos.AdminController;
 import photos.Album;
 import photos.Photo;
+import photos.Photos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,16 +35,12 @@ public class User implements Serializable {
         tagTypes.add("location");
         tagTypes.add("person");
         userPhotos = new ArrayList<Photo>();
-        Photo first = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/cherry-blossoms-korea-beautiful-34712339.jpeg");
-        Photo second = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/feet-bathroom-scale-isolated-792851.jpeg");
-        Photo third = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/horse-racing-hong-kong-34749739.jpeg");
-        Photo fourth = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/low-gi-foods-healthy-weight-loss-slimming-diet-29310784.jpeg");
-        Photo fifth = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/supermarket-refrigerated-shelves-december-located-parknshop-tseung-kwan-o-hong-kong-35867257.jpeg");
-        userPhotos.add(first);
-        userPhotos.add(second);
-        userPhotos.add(third);
-        userPhotos.add(fourth);
-        userPhotos.add(fifth);
+        if(Photos.admin!=null){
+            for(Photo a: Photos.admin.stockPhotos){
+                userPhotos.add(a);
+            }
+        }
+
     }
 
     /**

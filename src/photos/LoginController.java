@@ -50,6 +50,10 @@ public class LoginController{
         LoginController.stage = stage;
     }
 
+    public static void setAdmin(Admin admin){
+        LoginController.admin = admin;
+    }
+
     /**
      * Called when the scene is first loaded
      * @return Nothing
@@ -57,38 +61,14 @@ public class LoginController{
     public void initialize() throws IOException, ClassNotFoundException {
 
 
-        readAdmin();
-        if(admin==null){
-            admin = new Admin();
-        }
 
-        AdminController.setAdmin(admin);
     }
 
     /**
      * Used to deserialize the data from the file and set the admin
      * @return Nothing
      */
-    public static void readAdmin() throws IOException {
 
-
-
-        try{
-            ObjectInputStream ois = new ObjectInputStream(
-                    new FileInputStream(storeDir + File.separator + storeFile));
-                admin = (Admin)ois.readObject();
-            ois.close();
-
-        } catch (EOFException e) {
-            //End of file
-        } catch (Exception e) {
-
-        }
-
-
-
-
-    }
 
     /**
      * Used to enable the login button

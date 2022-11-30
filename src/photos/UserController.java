@@ -30,6 +30,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
+
+import static photos.Photos.writeAdmin;
+
 /**
  * <h1>The User Screen Controller</h1>
  * This class that is mainly used to manage the User.fxml file,
@@ -136,7 +139,7 @@ public class UserController{
 
     }
 
-    public void createAlbum(ActionEvent actionEvent) {
+    public void createAlbum(ActionEvent actionEvent) throws IOException {
         String album_name = enterAlbum.getText().trim();
         if(album_name.length() < 1){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -163,11 +166,13 @@ public class UserController{
         albums.setItems(FXCollections.observableList((current.getAlbums())));
 
         createAlbum.setDisable(true);
+        writeAdmin();
     }
 
-    public void renameAlbum(ActionEvent actionEvent) {
+    public void renameAlbum(ActionEvent actionEvent) throws IOException {
         albums.getSelectionModel().getSelectedItem().rename(enterAlbum.getText().trim());
         albums.setItems(FXCollections.observableList((current.getAlbums())));
+        writeAdmin();
     }
 
     public void openAlbum(ActionEvent actionEvent) throws IOException {
@@ -181,7 +186,7 @@ public class UserController{
         stage.show();
     }
 
-    public void conjunctiveSearch(ActionEvent actionEvent){
+    public void conjunctiveSearch(ActionEvent actionEvent) throws IOException {
         photos_list= new ArrayList<Photo>();
         String tag_string = searchPhotos.getText().trim();
         String tag1;
@@ -251,8 +256,9 @@ public class UserController{
         conjunctiveSearch.setDisable(true);
         searchPhotos.setDisable(false);
         clear.setDisable(false);
+        writeAdmin();
     }
-    public void disjunctiveSearch(ActionEvent actionEvent){
+    public void disjunctiveSearch(ActionEvent actionEvent) throws IOException {
         photos_list= new ArrayList<Photo>();
         String tag_string = searchPhotos.getText().trim();
         String tag1;
@@ -310,6 +316,7 @@ public class UserController{
         disjunctiveSearch.setDisable(true);
         searchPhotos.setDisable(false);
         clear.setDisable(false);
+        writeAdmin();
     }
 
     public void addTagSearch(ActionEvent actionEvent){
@@ -334,7 +341,7 @@ public class UserController{
     public void clearPhotoSearch(ActionEvent actionEvent){
 
     }
-    public void checkTagsSingular(ActionEvent actionEvent){
+    public void checkTagsSingular(ActionEvent actionEvent) throws IOException {
         //Disables other buttons
         searchPhotos.setDisable(true);
         disjunctiveSearch.setDisable(false);
@@ -406,7 +413,7 @@ public class UserController{
 
         }
 
-
+        writeAdmin();
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
         singularSearch.setDisable(true);
         searchPhotos.setDisable(false);
@@ -468,7 +475,7 @@ public class UserController{
         return;
     }
 
-    public void checkDateRange(ActionEvent actionEvent){
+    public void checkDateRange(ActionEvent actionEvent) throws IOException {
         searchPhotos.setDisable(true);
         String date_string = searchPhotos.getText().trim();
         String[] dates;
@@ -540,7 +547,7 @@ public class UserController{
             }
             //Passes all checks, adds the photo to the list
             photos_list.add(e);
-
+            writeAdmin();
         }
 
         //Adds all matched photos to photos_matched
@@ -564,7 +571,7 @@ public class UserController{
         createAlbum.setDisable(false);
         searchDateRange.setDisable(true);
         searchPhotos.setDisable(true);
-
+        writeAdmin();
 
     }
 

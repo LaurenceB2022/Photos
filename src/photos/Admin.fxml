@@ -16,7 +16,7 @@
                     <Button fx:id="Show_Users" text="Show Users" onAction="#showUsers" />
                     <Button fx:id="Add_User" text="Add A New User" onAction="#addUser" disable="true"/>
                     <Button fx:id="Remove_User" text="Delete A User" onAction="#deleteUser" disable="true"/>
-                    <TextField fx:id="User_Entry" promptText="Enter Name"  maxWidth="100" layoutX="50" onAction="" />
+                    <TextField fx:id="User_Entry" promptText="Enter Name"  maxWidth="100" layoutX="50" onAction="#enableButton" />
                 </children>
             </HBox>
 

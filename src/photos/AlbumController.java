@@ -27,6 +27,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+import static photos.Photos.writeAdmin;
+
 /**
  * <h1>The Album Controller Class</h1>
  * Class used to control the scene that displays album information
@@ -118,7 +120,7 @@ public class AlbumController {
      * @param actionEvent
      * @return Nothing
      */
-    public void addPhoto(ActionEvent actionEvent) {
+    public void addPhoto(ActionEvent actionEvent) throws IOException {
                 FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("images", "*.jpg", "*.png", "*.jpeg","*.bmp","*.gif")
@@ -140,6 +142,7 @@ public class AlbumController {
             currentAlbum.addPhoto(photo);
         }
         display();
+        writeAdmin();
     }
 
     /**
@@ -216,7 +219,7 @@ public class AlbumController {
      * @param actionEvent
      * @return Nothing
      */
-    public void removePhoto(ActionEvent actionEvent) {
+    public void removePhoto(ActionEvent actionEvent) throws IOException {
         display.getChildren().clear();
         currentAlbum.removePhoto(currentPhoto);
         currentPhoto = null;
@@ -229,6 +232,7 @@ public class AlbumController {
         removeTag.setDisable(true);
         addPhoto.setDisable(false);
         display();
+        writeAdmin();
     }
 
     /**
@@ -270,7 +274,7 @@ public class AlbumController {
      * @return Nothing
      */
 
-    public void addText(ActionEvent actionEvent) {
+    public void addText(ActionEvent actionEvent) throws IOException {
         if(captionMode){
             currentPhoto.setCaption(text.getText().trim());
             captionMode = false;
@@ -307,6 +311,7 @@ public class AlbumController {
         }
         text.clear();
         display();
+        writeAdmin();
     }
 
     /**
@@ -345,7 +350,7 @@ public class AlbumController {
      * @param actionEvent
      * @return Nothing
      */
-    public void removeTag(ActionEvent actionEvent) {
+    public void removeTag(ActionEvent actionEvent) throws IOException {
         currentPhoto.getTags().remove(currentTag);
 
         textAdder.setVisible(false);
@@ -357,6 +362,7 @@ public class AlbumController {
         removeTag.setDisable(true);
         currentTag = null;
         display();
+        writeAdmin();
     }
 
     /**
@@ -364,7 +370,7 @@ public class AlbumController {
      * @param actionEvent
      * @return Nothing
      */
-    public void copyPhoto(ActionEvent actionEvent) {
+    public void copyPhoto(ActionEvent actionEvent) throws IOException {
         if(copyMode){
             display.getChildren().clear();
             copyMode = false;
@@ -405,7 +411,7 @@ public class AlbumController {
             captionPhoto.setDisable(true);
         }
 
-
+        writeAdmin();
     }
 
     /**
@@ -413,7 +419,7 @@ public class AlbumController {
      * @param actionEvent
      * @return Nothing
      */
-    public void movePhoto(ActionEvent actionEvent) {
+    public void movePhoto(ActionEvent actionEvent) throws IOException {
         if(moveMode){
             display.getChildren().clear();
             moveMode = false;
@@ -457,7 +463,7 @@ public class AlbumController {
             addPhoto.setDisable(true);
             captionPhoto.setDisable(true);
         }
-
+        writeAdmin();
 
     }
 
