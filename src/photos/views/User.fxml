@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="photos.UserController"
+            fx:controller="photos.controllers.UserController"
             prefHeight="400.0" prefWidth="600.0">
     <HBox AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10" AnchorPane.bottomAnchor="10" spacing="25" >
         <VBox  spacing="10" >

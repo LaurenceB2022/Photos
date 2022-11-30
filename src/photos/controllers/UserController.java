@@ -1,4 +1,4 @@
-package photos;
+package photos.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -13,9 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
-import model.Album;
-import model.Photo;
-import model.User;
+import photos.model.Album;
+import photos.model.Photo;
+import photos.model.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -216,7 +216,7 @@ public class UserController{
 
         AlbumController.setCurrentAlbum(albums.getSelectionModel().getSelectedItem());
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Album.fxml"));
+        loader.setLocation(getClass().getResource("../views/Album.fxml"));
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -640,7 +640,7 @@ public class UserController{
 
     public void closeAndLogout() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Login.fxml"));
+        loader.setLocation(getClass().getResource("../views/Login.fxml"));
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);

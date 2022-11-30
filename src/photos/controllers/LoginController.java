@@ -1,4 +1,4 @@
-package photos;
+package photos.controllers;
 
 
 import javafx.event.ActionEvent;
@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.Admin;
+import photos.model.Admin;
 
 //import javax.swing.text.html.ListView;
 import java.io.*;
@@ -96,7 +96,7 @@ public class LoginController{
         if(entered_input.equals("admin")){
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("Admin.fxml"));
+            loader.setLocation(getClass().getResource("../views/Admin.fxml"));
             AnchorPane root = (AnchorPane)loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -111,7 +111,7 @@ public class LoginController{
                     UserController.setCurrent(admin.getRegistered_users().get(i));
                     AlbumController.setCurrent(admin.getRegistered_users().get(i));
                     FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("User.fxml"));
+                    loader.setLocation(getClass().getResource("../views/User.fxml"));
                     AnchorPane root = (AnchorPane)loader.load();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);

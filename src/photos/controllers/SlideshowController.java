@@ -1,4 +1,4 @@
-package photos;
+package photos.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.Album;
+import photos.model.Album;
 
 import java.io.IOException;
 /**
@@ -45,7 +45,7 @@ public class SlideshowController {
 
     public void goBack(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Album.fxml"));
+        loader.setLocation(getClass().getResource("../views/Album.fxml"));
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);

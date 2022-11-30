@@ -1,14 +1,9 @@
-package model;
-
-import javafx.util.converter.LocalDateStringConverter;
+package photos.model;
 
 import java.io.File;
 import java.io.Serializable;
-import java.nio.file.Path;
-import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.time.*;
 
 /**

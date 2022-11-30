@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="photos.LoginController"
+            fx:controller="photos.controllers.LoginController"
             prefHeight="400.0" prefWidth="600.0">
 
             <Text fx:id="text" text="User Login" scaleX="2" scaleY="2" AnchorPane.leftAnchor="100" AnchorPane.topAnchor="150"/>

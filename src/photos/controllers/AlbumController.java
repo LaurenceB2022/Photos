@@ -1,4 +1,4 @@
-package photos;
+package photos.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -13,9 +13,9 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Album;
-import model.Photo;
-import model.User;
+import photos.model.Album;
+import photos.model.Photo;
+import photos.model.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -467,7 +467,7 @@ public class AlbumController {
     public void viewSlideshow(ActionEvent actionEvent) throws IOException {
         SlideshowController.setCurrentAlbum(currentAlbum);
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Slideshow.fxml"));
+        loader.setLocation(getClass().getResource("../views/Slideshow.fxml"));
 
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);
@@ -482,7 +482,7 @@ public class AlbumController {
      */
     public void goBack(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("User.fxml"));
+        loader.setLocation(getClass().getResource("../views/User.fxml"));
 
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);

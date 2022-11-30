@@ -1,4 +1,4 @@
-package photos;
+package photos.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.Admin;
-import model.User;
+import photos.model.Admin;
+import photos.model.User;
 
 //import javax.swing.text.html.ListView;
 import javafx.collections.FXCollections;
@@ -186,8 +186,8 @@ public class AdminController {
      */
     public void closeAndLogout() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Login.fxml"));
-        AnchorPane root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        loader.setLocation(getClass().getResource("../views/Login.fxml"));
+        AnchorPane root = FXMLLoader.load(getClass().getResource("../views/Login.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

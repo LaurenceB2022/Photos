@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="photos.AlbumController"
+            fx:controller="photos.controllers.AlbumController"
             prefHeight="400.0" prefWidth="800.0">
 
 

@@ -1,6 +1,7 @@
 //Contributors: Laurence Bartram and and Ismaeel Abdulghani
 package photos;
 
+import photos.controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.stage.Stage;
-import model.Admin;
+import photos.model.Admin;
 
 import java.io.*;
 
@@ -41,7 +42,7 @@ public class Photos extends Application {
 
         LoginController.setStage(stage);
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Login.fxml"));
+        loader.setLocation(getClass().getResource("views/Login.fxml"));
         AnchorPane root = (AnchorPane)loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
