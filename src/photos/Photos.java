@@ -2,21 +2,15 @@
 package photos;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import photos.users.Admin;
-import photos.users.User;
+import model.Admin;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * <h1>The Main Photos Class</h1>

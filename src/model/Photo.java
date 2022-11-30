@@ -1,4 +1,4 @@
-package photos;
+package model;
 
 import javafx.util.converter.LocalDateStringConverter;
 

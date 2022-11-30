@@ -10,17 +10,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import photos.users.Admin;
-import photos.users.User;
+import model.Admin;
+import model.User;
 
 //import javax.swing.text.html.ListView;
 import javafx.collections.FXCollections;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.*;
 
 import static photos.Photos.writeAdmin;
 

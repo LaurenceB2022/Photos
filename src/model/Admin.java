@@ -1,7 +1,4 @@
-package photos.users;
-
-import photos.Album;
-import photos.Photo;
+package model;
 
 import java.io.*;
 import java.util.ArrayList;

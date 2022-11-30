@@ -1,13 +1,9 @@
-package photos.users;
+package model;
 
-import photos.AdminController;
-import photos.Album;
-import photos.Photo;
 import photos.Photos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * <h1>The User Class</h1>
