@@ -45,7 +45,7 @@ public class User implements Serializable {
 
     /**
      * Getter method for username
-     * @return String The Username
+     * @return String of the username
      */
     public String getUsername(){
         return username;
@@ -108,7 +108,7 @@ public class User implements Serializable {
     }
     /**
      * Getter method for all the user photos
-     * @return ArrayList<Photo>
+     * @return ArrayList<Photo> of the User's photos
      */
     public ArrayList<Photo> getUserPhotos(){
 

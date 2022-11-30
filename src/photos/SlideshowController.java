@@ -39,7 +39,7 @@ public class SlideshowController {
 
     /**
      * Used to go back to the album screen.
-     * @param actionEvent
+     * @param actionEvent The action event tied to the goBack Button.
      * @return Nothing
      */
 
@@ -64,7 +64,7 @@ public class SlideshowController {
 
     /**
      * Takes in a Stage parameter, and uses it to set the stage of the Slideshow.
-     * @param stage
+     * @param stage The inherited Stage.
      * @return Nothing
      */
     public static void setStage(Stage stage) {
@@ -72,8 +72,8 @@ public class SlideshowController {
     }
 
     /**
-     * Takes in an Album parameter, and uses it to set the current Album value of the Slideshow.
-     * @param album
+     * Takes in Album parameter, and uses it to set the current Album value of the Slideshow.
+     * @param album The inherited Album.
      * @return Nothing
      */
     public static void setCurrentAlbum(Album album){

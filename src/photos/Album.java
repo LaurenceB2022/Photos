@@ -81,7 +81,8 @@ public class Album implements Serializable {
     }
 
     /**
-     * Getter method for all the photos in the album
+     * Getter method for the ArrayList of Photos.
+     *
      * @return ArrayList<Photo>
      */
     public ArrayList<Photo> getPhotos(){

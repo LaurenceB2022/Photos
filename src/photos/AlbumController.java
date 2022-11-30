@@ -96,7 +96,7 @@ public class AlbumController {
 
     /**
      * Sets album of the scene beforehand
-     * @param album The album
+     * @param album The un-serialized album
      * @return Nothing
      */
     public static void setCurrentAlbum(Album album){
@@ -104,7 +104,7 @@ public class AlbumController {
     }
 
     /**
-     * Called when the scene is first loaded in to set it up
+     * Called when the scene is first loaded in to set it up. Sets the observable list.
      * @return Nothing
      */
 
@@ -117,7 +117,7 @@ public class AlbumController {
 
     /**
      * Called to get a photo from the computer to add to the app
-     * @param actionEvent
+     * @param actionEvent The action event tied to the addPhoto Button.
      * @return Nothing
      */
     public void addPhoto(ActionEvent actionEvent) throws IOException {
@@ -146,7 +146,7 @@ public class AlbumController {
     }
 
     /**
-     * Called to display all the different photos in the scene
+     * Called to display all the different photos in the scene.
      * @return Nothing
      */
     public void display(){
@@ -177,8 +177,7 @@ public class AlbumController {
     }
 
     /**
-     * Called to display the current selected photo in the screen
-     * @param actionEvent
+     * Called to display the current selected photo in the screen.
      * @return Nothing
      */
     public void showCurrentPhoto(){
@@ -216,7 +215,7 @@ public class AlbumController {
 
     /**
      * Called to remove the photo from the album
-     * @param actionEvent
+     * @param actionEvent The action event tied to the removePhoto Button.
      * @return Nothing
      */
     public void removePhoto(ActionEvent actionEvent) throws IOException {
@@ -237,7 +236,7 @@ public class AlbumController {
 
     /**
      * Called to enable the caption button
-     * @param actionEvent
+     * @param actionEvent The action event tied to captionPhoto Button.
      * @return Nothing
      */
     public void enableCaption(ActionEvent actionEvent) {
@@ -269,8 +268,8 @@ public class AlbumController {
     }
 
     /**
-     * Called to add a tag or caption
-     * @param actionEvent
+     * Called to add a tag or caption, handles the disabling and re-enabling of Buttons.
+     * @param actionEvent The action event tied to the textAdder Button.
      * @return Nothing
      */
 
@@ -316,7 +315,7 @@ public class AlbumController {
 
     /**
      * Called to enable the tag button
-     * @param actionEvent
+     * @param actionEvent The action event tied to the addTag Button.
      * @return Nothing
      */
     public void enableTag(ActionEvent actionEvent) {
@@ -347,7 +346,7 @@ public class AlbumController {
 
     /**
      * Called to remove a selected tag from a photo
-     * @param actionEvent
+     * @param actionEvent The action event tied to the removeTag Button.
      * @return Nothing
      */
     public void removeTag(ActionEvent actionEvent) throws IOException {
@@ -367,7 +366,7 @@ public class AlbumController {
 
     /**
      * Called to copy a photo to a different album
-     * @param actionEvent
+     * @param actionEvent The action event tied to the copyPhoto Button.
      * @return Nothing
      */
     public void copyPhoto(ActionEvent actionEvent) throws IOException {
@@ -416,7 +415,7 @@ public class AlbumController {
 
     /**
      * Called to move a photo to a different album
-     * @param actionEvent
+     * @param actionEvent The action event tied to the movePhoto Button.
      * @return Nothing
      */
     public void movePhoto(ActionEvent actionEvent) throws IOException {
@@ -469,7 +468,7 @@ public class AlbumController {
 
     /**
      * Called to move to the Slideshow scene
-     * @param actionEvent
+     * @param actionEvent The action event tied to the viewSlides Button
      * @return Nothing
      */
     public void viewSlideshow(ActionEvent actionEvent) throws IOException {
@@ -485,7 +484,7 @@ public class AlbumController {
 
     /**
      * Called to move back to the User Screen
-     * @param actionEvent
+     * @param actionEvent The action event tied to the goBack Button.
      * @return Nothing
      */
     public void goBack(ActionEvent actionEvent) throws IOException {

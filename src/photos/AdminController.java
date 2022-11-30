@@ -53,7 +53,7 @@ public class AdminController {
 
     /**
      * Sets the stage for this class
-     * @param stage The current stage
+     * @param stage The current Stage
      * @return Nothing
      */
     public static void setStage(Stage stage){
@@ -61,7 +61,7 @@ public class AdminController {
     }
     /**
      * Sets the admin for the session
-     * @param current The admin
+     * @param current The current Admin
      * @return Nothing
      */
     public static void setAdmin(Admin current){
@@ -87,6 +87,7 @@ public class AdminController {
      */
     public void addUser(ActionEvent e) throws IOException {
         String username = User_Entry.getText().trim();
+        User_Entry.clear();
         if(username.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Field is empty.");
@@ -121,7 +122,7 @@ public class AdminController {
 
     /**
      * Used to show the different users in the list
-     * @param e
+     * @param e The action event tied to the Show_Users button.
      * @return Nothing
      */
     public void showUsers(ActionEvent e){
@@ -132,7 +133,7 @@ public class AdminController {
 
     /**
      * Used when the Delete User button is pressed to possibly remove the user from the app
-     * @param e
+     * @param e The action event tied to the Remove_User Button.
      * @return Nothing
      */
     public void deleteUser(ActionEvent e) throws IOException {

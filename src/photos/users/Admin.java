@@ -23,7 +23,7 @@ public class Admin implements Serializable{
     public ArrayList<Photo> stockPhotos;
 
     /**
-     * Initializes an Admin object with the stock user and photos
+     * Initializes an Admin object with the stock user and photos.
      */
     public Admin(){
         registered_users = new ArrayList<User>();
@@ -57,7 +57,7 @@ public class Admin implements Serializable{
 
     /**
      * Retrieves all the users in the app
-     * @return ArrayList<User>
+     * @return ArrayList<User> of the users saved to the Admin.
      */
     public ArrayList<User> getRegistered_users(){
         return registered_users;
@@ -65,7 +65,7 @@ public class Admin implements Serializable{
 
     /**
      * Adds a user to the app
-     * @param username The user we are adding
+     * @param username The user we are adding to registered_users
      * @return Nothing>
      */
     public void addUser(User username){
@@ -86,7 +86,7 @@ public class Admin implements Serializable{
     }
     /**
      * Used to display the name of the user (Admin in this case)
-     * @return String of User name
+     * @return String of the Admin name
      */
     @Override
     public String toString(){

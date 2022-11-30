@@ -73,7 +73,7 @@ public class LoginController{
 
     /**
      * Used to enable the login button
-     * @param e
+     * @param keyEvent The key event tied to the text_entry TextField.
      * @return Nothing
      */
     public void enableLogin(KeyEvent keyEvent) {
@@ -93,8 +93,8 @@ public class LoginController{
     }
 
     /**
-     * Used to log in after entering the username
-     * @param e
+     * Used to log in after entering a username String.
+     * @param e The action event tied to the enter Button.
      * @return Nothing
      */
     public void login(ActionEvent e) throws IOException {

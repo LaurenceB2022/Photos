@@ -43,7 +43,7 @@ public class Photo implements Serializable {
 
     /**
      * Getter method for the path
-     * @return String
+     * @return String of the path.
      */
     public String getPath(){
         return path;
@@ -51,7 +51,7 @@ public class Photo implements Serializable {
 
     /**
      * Setter method for the caption
-     * @param caption The caption
+     * @param caption String of the caption
      * @return Nothing
      */
     public void setCaption(String caption){
@@ -60,7 +60,7 @@ public class Photo implements Serializable {
 
     /**
      * Getter method for the caption
-     * @return String the caption
+     * @return String of the caption
      */
     public String getCaption(){
         return caption;
@@ -68,7 +68,7 @@ public class Photo implements Serializable {
 
     /**
      * Getter method for the last modified date
-     * @return Date
+     * @return The last modified Date
      */
     public Date getLastModified(){ return lastModified; }
 
@@ -101,7 +101,7 @@ public class Photo implements Serializable {
 
     /**
      * Getter method for the tags
-     * @return ArrayList<String>
+     * @return ArrayList<String> of the tags
      */
     public ArrayList<String> getTags(){
         return tags;
