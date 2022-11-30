@@ -51,8 +51,7 @@ public class UserController{
     private TextField searchPhotos;
     @FXML
     private Button searchDateRange;
-    @FXML
-    private Button addTag;
+
     @FXML
     private Button createAlbum;
     @FXML
@@ -67,8 +66,7 @@ public class UserController{
     private Button disjunctiveSearch;
     @FXML
     private Button singularSearch;
-    @FXML
-    private Button addTagSearch;
+
     @FXML
     private Button clear;
 
@@ -182,7 +180,7 @@ public class UserController{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Invalid name");
             alert.show();
-            searchPhotos.setDisable(false);
+
             createAlbum.setDisable(true);
             return;
         }
@@ -242,7 +240,8 @@ public class UserController{
      * @throws IOException
      */
     public void conjunctiveSearch(ActionEvent actionEvent) throws IOException {
-        photos_list= new ArrayList<Photo>();
+        photos_list = new ArrayList<Photo>();
+        photos.getChildren().clear();
         String tag_string = searchPhotos.getText().trim();
         String tag1;
         String tag2;
@@ -251,10 +250,9 @@ public class UserController{
         //Checks if the tag is in the correct form
         if(!tag_string.contains(" ") || sub.length != 2 ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Incorrect format. Singular tags need to be in the form [tag1_type=tag1_name] [tag2_type=tag2_name]");
+            alert.setHeaderText("Incorrect format. Tags need to be in the form [tag1_type=tag1_name] [tag2_type=tag2_name]. For example: 'location=blue person=red'");
             alert.show();
-            searchPhotos.setDisable(false);
-            singularSearch.setDisable(true);
+
             return;
         }
         //Assigns the tag type and tag value
@@ -289,13 +287,12 @@ public class UserController{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Tag(s) entered does not exist");
             alert.show();
-            searchPhotos.setDisable(false);
-            conjunctiveSearch.setDisable(true);
+
             return;
         }
 
         photos.setDisable(false);
-        photos.getChildren().clear();
+
         for(Photo photo:photos_list){ //Displays photos
 
             Image image = new Image(photo.getPath(),50, 50, false, false);
@@ -306,9 +303,7 @@ public class UserController{
 
         }
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
-        conjunctiveSearch.setDisable(true);
-        searchPhotos.setDisable(false);
-        clear.setDisable(false);
+
         writeAdmin();
     }
 
@@ -321,7 +316,8 @@ public class UserController{
      * @throws IOException
      */
     public void disjunctiveSearch(ActionEvent actionEvent) throws IOException {
-        photos_list= new ArrayList<Photo>();
+        photos_list = new ArrayList<Photo>();
+        photos.getChildren().clear();
         String tag_string = searchPhotos.getText().trim();
         String tag1;
         String tag2;
@@ -330,10 +326,9 @@ public class UserController{
         //Checks if the tag is in the correct form
         if(!tag_string.contains(" ") || sub.length != 2 ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Incorrect format. Singular tags need to be in the form [tag1_type=tag1_name] [tag2_type=tag2_name]");
+            alert.setHeaderText("Incorrect format. Tags need to be in the form [tag1_type=tag1_name] [tag2_type=tag2_name]. For example: 'location=blue person=red'");
             alert.show();
-            searchPhotos.setDisable(false);
-            singularSearch.setDisable(true);
+
             return;
         }
         //Assigns the tag type and tag value
@@ -367,7 +362,7 @@ public class UserController{
 
         }
         photos.setDisable(false);
-        photos.getChildren().clear();
+
         for(Photo photo:photos_list){
             Image image = new Image(photo.getPath(),50, 50, false, false);
             ImageView imageView = new ImageView(image);
@@ -375,9 +370,7 @@ public class UserController{
 
         }
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
-        disjunctiveSearch.setDisable(true);
-        searchPhotos.setDisable(false);
-        clear.setDisable(false);
+
         writeAdmin();
     }
 
@@ -385,31 +378,35 @@ public class UserController{
      * This method enables the Photo search Buttons.
      * @param actionEvent The action event tied to the addTagSearch Button.
      */
-    public void addTagSearch(ActionEvent actionEvent){
-        singularSearch.setDisable(false);
-        disjunctiveSearch.setDisable(false);
-        conjunctiveSearch.setDisable(false);
-        searchDateRange.setDisable(false);
 
-    }
 
     /**
      * This method enables the addTagSearch Button if there exists text in the searchPhotos field.
      * @param actionEvent The action event tied to the searchPhotos TextField.
      * @throws IOException
      */
-    public void photoSearch(ActionEvent actionEvent) throws IOException {
-        if(searchPhotos.getText() ==null){
+    public void photoSearch(KeyEvent actionEvent) throws IOException {
+        if(searchPhotos.getText().trim().length()>0){
+            searchDateRange.setDisable(false);
+            singularSearch.setDisable(false);
+            conjunctiveSearch.setDisable(false);
+            disjunctiveSearch.setDisable(false);
+            clear.setDisable(false);
+        }
+        else{
+            searchDateRange.setDisable(true);
+            singularSearch.setDisable(true);
+            conjunctiveSearch.setDisable(true);
+            disjunctiveSearch.setDisable(true);
+            clear.setDisable(true);
+        }
 
-            addTagSearch.setDisable(true);
-        }
-        if(searchPhotos.getText().trim().length() > 0){
-            addTagSearch.setDisable(false);
-        }
 
     }
 
     public void clearPhotoSearch(ActionEvent actionEvent){
+        photos_list = new ArrayList<Photo>();
+        photos.getChildren().clear();
 
     }
 
@@ -421,11 +418,9 @@ public class UserController{
      */
     public void checkTagsSingular(ActionEvent actionEvent) throws IOException {
         //Disables other buttons
-        searchPhotos.setDisable(true);
-        disjunctiveSearch.setDisable(false);
-        conjunctiveSearch.setDisable(false);
-        searchDateRange.setDisable(false);
+
         photos_list = new ArrayList<Photo>();
+        photos.getChildren().clear();
         //Gets the textfield string
         String tag_string = searchPhotos.getText().trim();
         String tag_type;
@@ -434,10 +429,9 @@ public class UserController{
         //Checks if the tag is in the correct form
         if(!tag_string.contains("=") || sub.length != 2 ){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Incorrect format. Singular tags need to be in the form [tag type]=[tag name]");
+            alert.setHeaderText("Incorrect format. Singular tags need to be in the form [tag type]=[tag name]. For example: 'location=blue'");
             alert.show();
-            searchPhotos.setDisable(false);
-            singularSearch.setDisable(true);
+
             return;
         }
         //Assigns the tag type and tag value
@@ -448,7 +442,6 @@ public class UserController{
         //Goes through all albums and adds photos that matches the tag (Note: Bug will occur with photo that occurs in multiple albums
 
         for(Photo e:current.getUserPhotos()){
-
             for(String tag: e.getTags()){
                 if(tag.equals(tag_string)){
 
@@ -472,9 +465,8 @@ public class UserController{
 
         writeAdmin();
         createAlbum.setDisable(false); //Enables option to create an album based on the search results
-        singularSearch.setDisable(true);
-        searchPhotos.setDisable(false);
-        clear.setDisable(false);
+
+
     }
 
     /**
@@ -531,11 +523,9 @@ public class UserController{
     public void displayDateAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(
-                "Incorrect format. Tags need to be in the format [MM/DD/YYYY] or [MM/DD/YYYY - MM/DD/YYYY]" );
+                "Incorrect format. Tags need to be in the format [MM/DD/YYYY] or [MM/DD/YYYY-MM/DD/YYYY]. For Example: '10/19/2022-10/21-2022'" );
         alert.show();
-        searchPhotos.setDisable(false);
-        searchDateRange.setDisable(true);
-        addTagSearch.setDisable(true);
+
         return;
     }
 
@@ -547,7 +537,9 @@ public class UserController{
      * @throws IOException
      */
     public void checkDateRange(ActionEvent actionEvent) throws IOException {
-        searchPhotos.setDisable(true);
+
+        photos_list = new ArrayList<Photo>();
+        photos.getChildren().clear();
         String date_string = searchPhotos.getText().trim();
         String[] dates;
         LocalDate date_start;
@@ -587,6 +579,10 @@ public class UserController{
 
             String date_start_s = dates[0];
             String[] date = date_string.split("/");
+            if(date.length<3){
+                displayDateAlert();
+                return;
+            }
             boolean date_valid = checkDate(date);
             if(date.length != 3 || !date_valid){ //Only 1 date, so there must be 3 fields
                 displayDateAlert();
@@ -603,6 +599,7 @@ public class UserController{
 
 
         for(Photo e:current.getUserPhotos()){
+
             LocalDate current_date = e.getLast_date_modified();
 
             //Date range
@@ -625,7 +622,7 @@ public class UserController{
 
         //Sets and displays photos
         //Display the photos in the date range, and disables the option to create an Album out of the results
-        albums.setDisable(true);
+
         photos.setDisable(false);
         photos.getChildren().clear();
         for(Photo photo:photos_list){
@@ -640,8 +637,7 @@ public class UserController{
         }
 
         createAlbum.setDisable(false);
-        searchDateRange.setDisable(true);
-        searchPhotos.setDisable(true);
+
         writeAdmin();
 
     }

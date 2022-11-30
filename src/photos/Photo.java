@@ -23,10 +23,10 @@ public class Photo implements Serializable {
 
     private String path;
     private String caption;
-    Date lastModified;
+    public Date lastModified;
     private LocalDate last_date_modified;
     private ArrayList<String> tags;
-    private ArrayList<Tag> obj_tags;
+
 
     /**
      * Initializes a photo object
@@ -35,9 +35,10 @@ public class Photo implements Serializable {
     public Photo(String path){
         this.path = path;
         tags = new ArrayList<String>();
-        obj_tags = new ArrayList<Tag>();
-        last_date_modified = LocalDate.now();
+
+
         lastModified =  new Date(new File(path.substring(5)).lastModified());
+        last_date_modified = lastModified.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     /**

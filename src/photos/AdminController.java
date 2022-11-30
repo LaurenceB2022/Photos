@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -72,6 +73,7 @@ public class AdminController {
      * @return Nothing
      */
     public void initialize() throws IOException, ClassNotFoundException {
+        obsList = new ArrayList<>();
 
         writeAdmin();
 
@@ -96,7 +98,7 @@ public class AdminController {
 
             //checks to see if the user already exists
             for (int i = 0; i < admin.getRegistered_users().size(); i++) {
-                User currentUser = obsList.get(i);
+                User currentUser = admin.getRegistered_users().get(i);
 
                 int cmp = currentUser.getUsername().compareToIgnoreCase(username);
 
@@ -193,8 +195,17 @@ public class AdminController {
         stage.show();
     }
 
-    public void enableButton(ActionEvent e){
-        Add_User.setDisable(false);
+    /**
+     * Used to enable the login button
+     * @return Nothing
+     */
+    public void enableButton(KeyEvent e){
+        if(User_Entry.getText().trim().length()==0){
+            Add_User.setDisable(true);
+        }
+        else{
+            Add_User.setDisable(false);
+        }
     }
 
 

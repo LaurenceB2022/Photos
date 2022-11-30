@@ -28,9 +28,6 @@ public class Admin implements Serializable{
     public Admin(){
         registered_users = new ArrayList<User>();
         stockPhotos = new ArrayList<Photo>();
-                User stock = new User("stock");
-
-        Album stockAlbum = stock.createAlbum("stock");
         Photo first = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/cherry-blossoms-korea-beautiful-34712339.jpeg");
         Photo second = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/feet-bathroom-scale-isolated-792851.jpeg");
         Photo third = new Photo("file:"+System.getProperty("user.dir")+"/"+"data/horse-racing-hong-kong-34749739.jpeg");
@@ -41,11 +38,20 @@ public class Admin implements Serializable{
         stockPhotos.add(third);
         stockPhotos.add(fourth);
         stockPhotos.add(fifth);
+        User stock = new User("stock");
+
+        Album stockAlbum = stock.createAlbum("stock");
+
         stockAlbum.addPhoto(first);
         stockAlbum.addPhoto(second);
         stockAlbum.addPhoto(third);
         stockAlbum.addPhoto(fourth);
         stockAlbum.addPhoto(fifth);
+        stock.getUserPhotos().add(first);
+        stock.getUserPhotos().add(second);
+        stock.getUserPhotos().add(third);
+        stock.getUserPhotos().add(fourth);
+        stock.getUserPhotos().add(fifth);
         registered_users.add(stock);
     }
 

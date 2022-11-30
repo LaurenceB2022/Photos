@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -75,10 +76,20 @@ public class LoginController{
      * @param e
      * @return Nothing
      */
-    public void enableLogin(ActionEvent e){
+    public void enableLogin(KeyEvent keyEvent) {
+        if(text_entry.getText().trim().length()>0 ){
+
+            enter.setDisable(false);
+
+        }
+
+        if(text_entry.getText().trim().length()==0 ){
+
+            enter.setDisable(true);
+
+        }
 
 
-        enter.setDisable(false);
     }
 
     /**
