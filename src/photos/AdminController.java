@@ -67,7 +67,8 @@ public class AdminController {
         AdminController.admin = current;}
 
     /**
-     * Called when the scene is first loaded
+     * Called when the scene is first loaded. Invokes the static writeAdmin method to
+     *
      * @return Nothing
      */
     public void initialize() throws IOException, ClassNotFoundException {

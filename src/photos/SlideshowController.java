@@ -38,7 +38,7 @@ public class SlideshowController {
     private ImageView picture;
 
     /**
-     * Used to go back to the album screen
+     * Used to go back to the album screen.
      * @param actionEvent
      * @return Nothing
      */
@@ -52,7 +52,7 @@ public class SlideshowController {
         stage.show();
     }
     /**
-     * Called when scene is first loaded
+     * Called when the scene is first loaded to initialize the album into the slideshow.
      * @return Nothing
      */
     public void initialize(){
@@ -63,7 +63,7 @@ public class SlideshowController {
     }
 
     /**
-     * Used to set the stage
+     * Takes in a Stage parameter, and uses it to set the stage of the Slideshow.
      * @param stage
      * @return Nothing
      */
@@ -72,7 +72,7 @@ public class SlideshowController {
     }
 
     /**
-     * Used to set the album
+     * Takes in an Album parameter, and uses it to set the current Album value of the Slideshow.
      * @param album
      * @return Nothing
      */

@@ -35,9 +35,9 @@ import static photos.Photos.writeAdmin;
 
 /**
  * <h1>The User Screen Controller</h1>
- * This class that is mainly used to manage the User.fxml file,
+ * This class that is used to manage the User.fxml file,
  * switch the stage to the User stage, handle button and text inputs,
- * and manage the ListViews and ImageViews.
+ * and manage the ListViews and ImageViews present in the current scene.
  *
  * @author  Ismaeel Abdulghani and Laurence Bartram
  * @version 1.0
@@ -83,18 +83,40 @@ public class UserController{
     private static User current;
     private static Stage stage;
 
+    /**
+     * This method takes in a Stage parameter, and sets the UserController stage variable using it.
+     * @param stage The inherited Stage object.
+     * @return nothing
+     */
+
     public static void setStage(Stage stage){
         UserController.stage = stage;
     }
 
+    /**
+     * This method takes in a User parameter, and sets the current User object to it.
+     * @param user The inherited User object.
+     */
     public static void setCurrent(User user){
         current = user;
     }
+
+    /**
+     * This method initializes the observable list using the User object current.
+     * @throws IOException
+     * @returns Nothing
+     *
+     */
     public void initialize() throws IOException {
 
         albums.setItems(FXCollections.observableList((current.getAlbums())));
     }
 
+    /**
+     * This method deletes the selected item after receiving the action event.
+     * Disables the Album modification Buttons depending on the selected items available.
+     * @param actionEvent The action event tied to the deleteAlbum Button.
+     */
     public void deleteAlbum(ActionEvent actionEvent) {
         current.deleteAlbum(albums.getSelectionModel().getSelectedItem());
         albums.setItems(FXCollections.observableList((current.getAlbums())));
@@ -105,6 +127,10 @@ public class UserController{
         }
     }
 
+    /**
+     * This method handles the disabling and re-enabling of Buttons.
+     * @param mouseEvent The mouse event tied to the selection of the observable list.
+     */
     public void albumButtons(MouseEvent mouseEvent) {
         if(albums.getSelectionModel().getSelectedItem()!=null){
             deleteAlbum.setDisable(false);
@@ -117,6 +143,11 @@ public class UserController{
     }
 
 
+    /**
+     * This method handles modifying an existing Album's name String. Handles disabling and re-enabling
+     * Button options.
+     * @param keyEvent the event tied to the enterAlbum TextField.
+     */
     public void albumNameChanged(KeyEvent keyEvent) {
         if(enterAlbum.getText().length()>0 && albums.getSelectionModel().getSelectedItem()!=null){
 
@@ -139,6 +170,12 @@ public class UserController{
 
     }
 
+    /**
+     * This method creates an Album object, and adds it to the current User.
+     * Depends on the value in the enterAlbum TextField.
+     * @param actionEvent The action event tied to the createAlbum Button.
+     * @throws IOException
+     */
     public void createAlbum(ActionEvent actionEvent) throws IOException {
         String album_name = enterAlbum.getText().trim();
         if(album_name.length() < 1){
@@ -169,12 +206,23 @@ public class UserController{
         writeAdmin();
     }
 
+    /**
+     * This method renames the selected Album using the String stored in the
+     * enterAlbum TextField. Updates the observableList to reflect the changes.
+     * @param actionEvent The action event tied to the renameAlbum Button.
+     * @throws IOException
+     */
     public void renameAlbum(ActionEvent actionEvent) throws IOException {
         albums.getSelectionModel().getSelectedItem().rename(enterAlbum.getText().trim());
         albums.setItems(FXCollections.observableList((current.getAlbums())));
         writeAdmin();
     }
 
+    /**
+     * This method opens the Album selected in the albums ListView.
+     * @param actionEvent The action event tied to the openAlbum Button.
+     * @throws IOException
+     */
     public void openAlbum(ActionEvent actionEvent) throws IOException {
 
         AlbumController.setCurrentAlbum(albums.getSelectionModel().getSelectedItem());
@@ -186,6 +234,13 @@ public class UserController{
         stage.show();
     }
 
+    /**
+     * This method performs a conjunctive search on the String in the searchPhotos TextField.
+     * It compares said String against the String tags stored in all stored Photos for the current
+     * User. Displays all photos containing both tag strings.
+     * @param actionEvent The action event tied to the conjunctiveSearch Button.
+     * @throws IOException
+     */
     public void conjunctiveSearch(ActionEvent actionEvent) throws IOException {
         photos_list= new ArrayList<Photo>();
         String tag_string = searchPhotos.getText().trim();
@@ -207,8 +262,6 @@ public class UserController{
         tag2 = sub[1];
         boolean exists = false;
         Photo current_photo;
-
-
 
         //Goes through all albums and adds photos that matches the tag (Note: Bug will occur with photo that occurs in multiple albums
 
@@ -243,7 +296,7 @@ public class UserController{
 
         photos.setDisable(false);
         photos.getChildren().clear();
-        for(Photo photo:photos_list){
+        for(Photo photo:photos_list){ //Displays photos
 
             Image image = new Image(photo.getPath(),50, 50, false, false);
 
@@ -258,6 +311,15 @@ public class UserController{
         clear.setDisable(false);
         writeAdmin();
     }
+
+    /**
+     * This method performs a disjunctive search on the String in the searchPhotos TextField.
+     * It compares said String against the String tags stored in all stored Photos for the current
+     * User. Displays all photos containing either one or both of the two Strings in
+     * the ImageView.
+     * @param actionEvent The action event tied to the disjunctiveSearch Button.
+     * @throws IOException
+     */
     public void disjunctiveSearch(ActionEvent actionEvent) throws IOException {
         photos_list= new ArrayList<Photo>();
         String tag_string = searchPhotos.getText().trim();
@@ -319,6 +381,10 @@ public class UserController{
         writeAdmin();
     }
 
+    /**
+     * This method enables the Photo search Buttons.
+     * @param actionEvent The action event tied to the addTagSearch Button.
+     */
     public void addTagSearch(ActionEvent actionEvent){
         singularSearch.setDisable(false);
         disjunctiveSearch.setDisable(false);
@@ -327,6 +393,11 @@ public class UserController{
 
     }
 
+    /**
+     * This method enables the addTagSearch Button if there exists text in the searchPhotos field.
+     * @param actionEvent The action event tied to the searchPhotos TextField.
+     * @throws IOException
+     */
     public void photoSearch(ActionEvent actionEvent) throws IOException {
         if(searchPhotos.getText() ==null){
 
@@ -341,6 +412,13 @@ public class UserController{
     public void clearPhotoSearch(ActionEvent actionEvent){
 
     }
+
+    /**
+     * This method checks the singular tag String entered, and displays the photos containing it
+     * in the ImageView.
+     * @param actionEvent The action event tied with the singularSearch Button.
+     * @throws IOException
+     */
     public void checkTagsSingular(ActionEvent actionEvent) throws IOException {
         //Disables other buttons
         searchPhotos.setDisable(true);
@@ -379,35 +457,14 @@ public class UserController{
                 }
             }
         }
-//        for(int index = 0; index < albums_user.size(); index++){
-//            Album current_album = albums_user.get(index);
-//            //Goes through all photos in the current album
-//            for(int indexP = 0; indexP < current_album.getPhotos().size(); indexP++){
-//                Photo current_photo = current_album.getPhotos().get(indexP);
-//                ArrayList<Tag> current_tags = current_photo.getObj_tags();
-//                //Goes through all the current tag values
-//                for(int indexT = 0; indexT < current_tags.size(); indexT++){
-//                    Tag current_tag = current_tags.get(indexT);
-//                    if(current_tag.compareTo(tag_type, tag_details)){
-//                        photos_list.add(current_photo);
-//                        break; //breaks out of tag loop
-//                    }
-//                }
-//            }
-//
-//
-//        }
 
         //Sets the photos that match the entered tag to the listview
         photos.setDisable(false);
         photos.getChildren().clear();
         for(Photo photo:photos_list){
-
             Image image = new Image(photo.getPath(),50, 50, false, false);
 
             ImageView imageView = new ImageView(image);
-
-
 
             photos.getChildren().addAll(imageView);
 
@@ -420,10 +477,14 @@ public class UserController{
         clear.setDisable(false);
     }
 
-    //Note that date length must first be validated by checkDateRange, in order for this method to function
-
-    //Note that date length must first be validated by checkDateRange, in order for this method to function
+    /**
+     * This method checks if the previously split String is a valid date. The split String array will
+     * always be of length 3.
+     * @param date_full The String array of the entered date.
+     * @return True if date_full is a valid date, False if date_full is not a valid date.
+     */
     public boolean checkDate(String[] date_full){
+        //Note that date length must first be validated by checkDateRange, in order for this method to function
         String month = date_full[0];
         String date = date_full[1];
         String year = date_full[2];
@@ -461,9 +522,12 @@ public class UserController{
             }
 
         }
-
         return true;
     }
+
+    /**
+     * This method displays the Alert error for an incorrectly entered date String.
+     */
     public void displayDateAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(
@@ -475,6 +539,13 @@ public class UserController{
         return;
     }
 
+    /**
+     * This method checks if the date(s) in the searchPhotos TextField in String format
+     * is a valid date or not. If the date or range is valid, it displays the matching Photos in
+     * the ImageView.
+     * @param actionEvent
+     * @throws IOException
+     */
     public void checkDateRange(ActionEvent actionEvent) throws IOException {
         searchPhotos.setDisable(true);
         String date_string = searchPhotos.getText().trim();
@@ -574,6 +645,11 @@ public class UserController{
         writeAdmin();
 
     }
+
+    /**
+     * This method exits out to the Login Screen upon the selection of the LogoutB Button.
+     * @throws IOException
+     */
 
     public void closeAndLogout() throws IOException {
         FXMLLoader loader = new FXMLLoader();
