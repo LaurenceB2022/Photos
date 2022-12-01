@@ -23,7 +23,7 @@ import java.io.*;
 public class Photos extends Application {
 
     private static final String storeFile = "users.dat";
-    private static final String storeDir = "docs";
+    private static final String storeDir = "data";
     public static Admin admin;
     /**
      * Sets the stages and starts the scenes

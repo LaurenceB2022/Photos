@@ -29,8 +29,7 @@ import static photos.Photos.writeAdmin;
  * @since   2022-11-30
  */
 public class AdminController {
-    private static final String storeFile = "users.dat";
-    private static final String storeDir = "docs";
+
     private static Admin admin;
     @FXML
     private ListView<User> userView;
