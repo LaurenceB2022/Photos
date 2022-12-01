@@ -94,6 +94,12 @@ public class User implements Serializable {
 
     }
 
+    /**
+     * Getter method for retrieving an Album of a specific name.
+     * @param album_name The String album name.
+     * @return The Album object matching the String. null if the String is not found.
+     */
+
     public Album getAlbum(String album_name){
         for(int index = 0; index < albums.size(); index++){
             if(albums.get(index).getName().compareTo(album_name) == 0){

@@ -369,13 +369,6 @@ public class UserController{
      * This method enables the Photo search Buttons.
      * @param actionEvent The action event tied to the addTagSearch Button.
      */
-
-
-    /**
-     * This method enables the addTagSearch Button if there exists text in the searchPhotos field.
-     * @param actionEvent The action event tied to the searchPhotos TextField.
-     * @throws IOException
-     */
     public void photoSearch(KeyEvent actionEvent) throws IOException {
         if(searchPhotos.getText().trim().length()>0){
             searchDateRange.setDisable(false);
@@ -394,6 +387,11 @@ public class UserController{
 
 
     }
+
+    /**
+     * Clears the search results from previous tag and date filters.
+     * @param actionEvent The ActionEvent tied to the clear Button.
+     */
 
     public void clearPhotoSearch(ActionEvent actionEvent){
         photos_list = new ArrayList<Photo>();

@@ -83,7 +83,7 @@ public class SlideshowController {
 
     /**
      * Used to go back to the previous picture
-     * @param actionEvent
+     * @param actionEvent The ActionEvent tied to the Button.
      * @return Nothing
      */
     public void prevPicture(ActionEvent actionEvent) {
@@ -96,7 +96,7 @@ public class SlideshowController {
 
     /**
      * Used to go to the next picture
-     * @param actionEvent
+     * @param actionEvent The ActionEvent tied to the Button.
      * @return Nothing
      */
     public void nextPicture(ActionEvent actionEvent) {

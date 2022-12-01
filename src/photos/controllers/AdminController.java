@@ -79,7 +79,7 @@ public class AdminController {
 
     /**
      * Used when the "Add User" button is pressed to possibly add a new user
-     * @param e
+     * @param e The ActionEvent tied to the Add_User Button.
      * @return Nothing
      */
     public void addUser(ActionEvent e) throws IOException {
@@ -119,7 +119,7 @@ public class AdminController {
 
     /**
      * Used to show the different users in the list
-     * @param e The action event tied to the Show_Users button.
+     * @param e The ActionEvent tied to the Show_Users button.
      * @return Nothing
      */
     public void showUsers(ActionEvent e){
@@ -130,7 +130,7 @@ public class AdminController {
 
     /**
      * Used when the Delete User button is pressed to possibly remove the user from the app
-     * @param e The action event tied to the Remove_User Button.
+     * @param e The ActionEvent tied to the Remove_User Button.
      * @return Nothing
      */
     public void deleteUser(ActionEvent e) throws IOException {
@@ -195,6 +195,7 @@ public class AdminController {
 
     /**
      * Used to enable the login button
+     * @param e The KeyEvent tied to the User_Entry TextField.
      * @return Nothing
      */
     public void enableButton(KeyEvent e){

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 /**
  * <h1>The Admin Class</h1>
  *  Used to hold all information about the app
+ *
  * @author  Ismaeel Abdulghani and Laurence Bartram
  * @version 1.0
  * @since   2022-11-30

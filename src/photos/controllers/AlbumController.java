@@ -307,7 +307,7 @@ public class AlbumController {
     }
 
     /**
-     * Called to enable the tag button
+     * Called to enable the tag buttons.
      * @param actionEvent The action event tied to the addTag Button.
      * @return Nothing
      */

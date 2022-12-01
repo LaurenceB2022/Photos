@@ -27,6 +27,7 @@ public class Photos extends Application {
     public static Admin admin;
     /**
      * Sets the stages and starts the scenes
+     * @param stage The inherited stage.
      * @return Nothing
      */
     @Override
@@ -52,7 +53,7 @@ public class Photos extends Application {
 
     /**
      * The main method
-     * @param
+     * @param args The command line arguments stored on start-up.
      * @return Nothing
      */
     public static void main(String[] args) throws IOException {

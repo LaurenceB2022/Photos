@@ -44,6 +44,11 @@ public class LoginController{
         LoginController.stage = stage;
     }
 
+    /**
+     * Sets the current Admin object.
+     * @param admin The inherited Admin object.
+     */
+
     public static void setAdmin(Admin admin){
         LoginController.admin = admin;
     }
@@ -57,11 +62,6 @@ public class LoginController{
 
 
     }
-
-    /**
-     * Used to deserialize the data from the file and set the admin
-     * @return Nothing
-     */
 
 
     /**
