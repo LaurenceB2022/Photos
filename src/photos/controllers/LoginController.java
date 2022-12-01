@@ -26,8 +26,7 @@ import java.io.*;
 public class LoginController{
     private static Stage stage;
     private static Admin admin;
-    public static final String storeFile = "users.dat";
-    public static final String storeDir = "docs";
+
 
     @FXML
     private TextField text_entry;
