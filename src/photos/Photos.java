@@ -69,7 +69,8 @@ public class Photos extends Application {
     }
 
     /**
-     * Used to serialize data whenever we update
+     * Used to serialize data whenever we update any object. This method is accessible
+     * to the Controller classes.
      * @return Nothing
      */
     public static void writeAdmin() throws IOException{
@@ -82,6 +83,13 @@ public class Photos extends Application {
         oos.close();
 
     }
+
+    /**
+     * This method reads from the data serialized in the users.dat file
+     * and un-serializes it. It then stores the data in the static admin object
+     * for later use.
+     * @throws IOException
+     */
     public static void readAdmin() throws IOException {
 
 
