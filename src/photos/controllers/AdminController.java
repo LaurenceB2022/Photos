@@ -198,7 +198,6 @@ public class AdminController {
      * @return Nothing
      */
     public void enableButton(KeyEvent e){
-        //Test
         if(User_Entry.getText().trim().length()==0){
             Add_User.setDisable(true);
         }
